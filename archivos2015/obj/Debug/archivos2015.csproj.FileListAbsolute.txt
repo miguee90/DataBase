@@ -1,0 +1,54 @@
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\bin\Debug\archivos2015.exe.config
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\bin\Debug\archivos2015.exe
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\bin\Debug\archivos2015.pdb
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.csprojResolveAssemblyReference.cache
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.Form1.resources
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.Properties.Resources.resources
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.csproj.GenerateResource.Cache
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.exe
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.pdb
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.NDic.resources
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.secuencial.resources
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.GetDatos.resources
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.Indexada.resources
+D:\Documentos\Miguel\archivos\archivos2015\bin\Debug\archivos2015.exe.config
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.exe
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.pdb
+D:\Documentos\Miguel\archivos\archivos2015\bin\Debug\archivos2015.exe
+D:\Documentos\Miguel\archivos\archivos2015\bin\Debug\archivos2015.pdb
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.csprojResolveAssemblyReference.cache
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.Indexada.resources
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.Form1.resources
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.GetDatos.resources
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.NDic.resources
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.Properties.Resources.resources
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.secuencial.resources
+D:\Documentos\Miguel\archivos\archivos2015\obj\Debug\archivos2015.csproj.GenerateResource.Cache
+D:\Documentos\Miguel\archivos\archivos\archivos2015\bin\Debug\archivos2015.exe.config
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.exe
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.pdb
+D:\Documentos\Miguel\archivos\archivos\archivos2015\bin\Debug\archivos2015.exe
+D:\Documentos\Miguel\archivos\archivos\archivos2015\bin\Debug\archivos2015.pdb
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.csprojResolveAssemblyReference.cache
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.Indexada.resources
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.Form1.resources
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.GetDatos.resources
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.NDic.resources
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.Properties.Resources.resources
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.secuencial.resources
+D:\Documentos\Miguel\archivos\archivos\archivos2015\obj\Debug\archivos2015.csproj.GenerateResource.Cache
+C:\Users\miguel\Google Drive\Escuela\Archivos\archivos2015\archivos2015\obj\Debug\archivos2015.Multillaves.resources
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\bin\Debug\archivos2015.exe.config
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.exe
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.pdb
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\bin\Debug\archivos2015.exe
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\bin\Debug\archivos2015.pdb
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.csprojResolveAssemblyReference.cache
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.Multillaves.resources
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.Indexada.resources
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.Form1.resources
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.GetDatos.resources
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.NDic.resources
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.Properties.Resources.resources
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.secuencial.resources
+C:\Users\BALIO\Documents\proyectos\archivos\archivos2015\obj\Debug\archivos2015.csproj.GenerateResource.Cache
