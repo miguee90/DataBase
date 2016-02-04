@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace archivos2015
 {
@@ -15,8 +17,9 @@ namespace archivos2015
     {
         private Diccionario diccionario;
         private bool modE,delE,delA,modA,org;
+        private Manager manejador;
 
-        public Form1()
+        public Form1(Manager man)
         {
             InitializeComponent();
             modE = false;
@@ -24,6 +27,23 @@ namespace archivos2015
             delA = false;
             modA = false;
             org = false;
+            manejador = man;
+            NDic nuevo = new NDic();
+            if (nuevo.ShowDialog() == DialogResult.OK)
+            {
+                this.Text = nuevo.NombreDic;
+                inicializaNuevo();
+                diccionario = new Diccionario(this.Text);
+                manejador.Bases.Add(diccionario);
+            }
+            else
+            {
+                inicializaTodo();
+            }
+            foreach(Diccionario i in manejador.Bases)
+            {
+                comboBD.Items.Add(i.NomDic);
+            }
         }
 
         #region clicks en el menu
@@ -34,8 +54,7 @@ namespace archivos2015
             {
                 this.Text = nuevo.NombreDic;
                 inicializaNuevo();
-                diccionario = new Diccionario(this.Text+".dic",true);
-                organizacionesToolStripMenuItem.Visible = true;
+                diccionario = new Diccionario(this.Text);
             }
         }
 
@@ -44,9 +63,7 @@ namespace archivos2015
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.Text = Path.GetFileName(openFileDialog1.FileName);
-                diccionario = new Diccionario(this.Text, false);
-                //Lee el contenido del archivo
-                diccionario.abreArchivo();
+                diccionario = new Diccionario(this.Text);
                 //Inicializa campos visibles y activados
                 iniciaAbrir();
 
@@ -129,6 +146,17 @@ namespace archivos2015
             buttonMod.Enabled = false;
             buttonDel.Enabled = false;
             groupName.Visible = false;
+        }
+
+        private void inicializaTodo()
+        {
+            groupEntidad.Visible = true;
+            groupAtriubuto.Visible = true;
+            groupAtri.Visible = true;
+            groupBotonA.Enabled = true;
+            buttonMod.Enabled = true;
+            buttonDel.Enabled = true;
+            groupName.Visible = true;
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -493,9 +521,7 @@ namespace archivos2015
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(diccionario!= null&&org==false)
-                //Mantenimiento de datos
-                diccionario.mantenimiento();
+            
         }
 
         private void iniciaAbrir()
@@ -507,7 +533,6 @@ namespace archivos2015
             buttonAddA.Enabled = true;
             buttonModA.Enabled = true;
             buttonDelA.Enabled = true;
-            organizacionesToolStripMenuItem.Visible = true;
             llenaDataE();
             llenaDataA();
         }
@@ -538,6 +563,20 @@ namespace archivos2015
             textNomA.Enabled = false;
             comboTipo.Enabled = false;
             numericUpDown1.Enabled = false;
+        }
+
+        private void comboBD_SelectedValueChanged(object sender, EventArgs e)
+        {
+            foreach(Diccionario i in manejador.Bases)
+            {
+                if(i.NomDic==comboBD.Text)
+                {
+                    diccionario = i;
+                    llenaDataE();
+                    llenaDataA();
+                    inicializaTodo();
+                }
+            }
         }
 
         private void activaExterna()

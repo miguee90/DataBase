@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace archivos2015
 {
+    [Serializable]
     /// <summary>
     /// Clase atributo
     /// guarda el tamaño,tipo,nombre y apuntadores de

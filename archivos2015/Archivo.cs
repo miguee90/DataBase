@@ -277,7 +277,7 @@ namespace archivos2015
             long dos = reader.ReadInt64();
             long tres = reader.ReadInt64();
             long cuatro = reader.ReadInt64();
-            ent = new Entidad(nombre, uno, dos, tres, cuatro);
+            ent = new Entidad(nombre);
 
             return ent;
         }

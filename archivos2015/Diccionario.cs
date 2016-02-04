@@ -8,37 +8,38 @@ using System.IO;
 
 namespace archivos2015
 {
+    [Serializable]
     /// <summary>
     /// Clase que contiene el archivo
     /// las entidades y el nombre del diccionariom,
     /// y algunas operaciones de diccionario.
     ///
     /// </summary>
+    ///
     public class Diccionario
     {
-        private Archivo archivo;
         private List<Entidad> entidades;
         private string nomDic;
 
+        public Diccionario(string nombre)
+        {
+            entidades = new List<Entidad>();
+            nomDic = nombre;
+        }
+
+
+        #region Getters y setters
         public string NomDic
         {
             get { return nomDic; }
             set { nomDic = value; }
         }
-
-        #region Getters y setters
         public List<Entidad> Entidades
         {
             get { return entidades; }
             set { entidades = value; }
         }
 
-        public Diccionario(string nombre,bool  nOv)
-        {
-            archivo = new Archivo(nombre,nOv);
-            entidades = new List<Entidad>();
-            nomDic = nombre;
-        }
 
         public List<Entidad> Ents
         {
@@ -65,15 +66,12 @@ namespace archivos2015
 
         public void escribeEntidad(string nombre)
         {
-            Entidad nEntidad = new Entidad(nombre, (long)-1, (long)-1, archivo.getDir(), (long)-1);
+            Entidad nEntidad = new Entidad(nombre);
             entidades.Add(nEntidad);
-            archivo.escribeEntidad(nEntidad);
             //ordena elementos
             entidades.Sort((p, q) => string.Compare(p.Nombre, q.Nombre));
             //escribe apuntadores
             actualizaPtr();
-            //Re-escribe el archivo
-            archivo.rescribeDirs(entidades);
         }
 
         private void actualizaPtr()
@@ -99,7 +97,6 @@ namespace archivos2015
             ent = getEntByName(nueva);
             dirEntN = getDirEnt(nueva);
             ent.ApuntaAt = dirAtri;
-            archivo.escribePtrAtEnt(dirEntN, dirAtri);
         }
         /// <summary>
         /// Funcion que se encarga de eliminar una entidad
@@ -124,20 +121,17 @@ namespace archivos2015
                     {
                         entidades.RemoveAt(i);
                         //Cambio de cabecera
-                        archivo.escribeCabecera((long)-1);
                     }
                     else if (i == 0 && entidades.Count>1)    //Elimina con cambio de cabecera si es el primer elemento
                     {
                         entidades.RemoveAt(i);
                         //Cambio de cabecera
-                        archivo.escribeCabecera(entidades[0].Dir);
                     }
 
                     else if (entidades[i].ApuntaEnt == -1)   //Si es el ultimo elemento
                     {
                         entidades[i - 1].ApuntaEnt = -1;
                         //Elimna en archivo
-                        archivo.cambiaPtrEntidad(entidades[i - 1].Dir, (long)-1);
                         entidades.RemoveAt(i);
 
                     }
@@ -145,7 +139,6 @@ namespace archivos2015
                     {
                         entidades[i - 1].ApuntaEnt = entidades[i + 1].Dir;
                         //Cambiar direcciones en archivo
-                        archivo.cambiaPtrEntidad(entidades[i - 1].Dir, entidades[i + 1].Dir);
                         entidades.RemoveAt(i);
                     }
                     return aux;
@@ -170,10 +163,8 @@ namespace archivos2015
                             //en memoria
                             j.ApuntaPrim = -1;
                             //en archivo
-                            archivo.escribePrimA(j.Direccion, (long)-1);
                             //Cambia tipo de clave
                             j.TClave = 3;
-                            archivo.escribeTClave(j.Direccion, 3);
                         }
         }
         /// <summary>
@@ -203,18 +194,14 @@ namespace archivos2015
                  if (entidades[i].Nombre == nombreEnt)
                  {
                      //Obtiene direccion de archivo 
-                     atr.Direccion = archivo.getDir();
                      //inserta en el archivo
-                     archivo.escrbeAtributo(atr);
                      //inserta en memoria
                      entidades[i].insertaAtributo(atr);
                      //ordena atributos en archivo
-                     archivo.ordenaPtrs(entidades[i].Atributos);
                      //Cambia el apuntador a atributos de la entidad
                      //En memoria
                      entidades[i].ApuntaAt = entidades[i].Atributos[0].Direccion;
                      //En archivo
-                     archivo.escribePtrAtEnt(entidades[i].Dir, entidades[i].Atributos[0].Direccion);
                  }
         }
         /// <summary>
@@ -301,7 +288,6 @@ namespace archivos2015
                             if (i.Atributos.Count == 1)
                             {
                                 //En archivo
-                                archivo.escribePtrAtEnt(i.Dir, (long)-1);
                                 //En memoria
                                 i.ApuntaAt = -1;
                                 i.Atributos.RemoveAt(j);
@@ -310,7 +296,6 @@ namespace archivos2015
                             else if (j == i.Atributos.Count - 1)
                             {
                                 //En archivo
-                                archivo.escribePtrAtAtri(i.Atributos[j - 1].Direccion, (long)-1);
                                 //En memoria
                                 i.Atributos[j - 1].ApuntaAtri = -1;
                                 i.Atributos.RemoveAt(j);
@@ -319,7 +304,6 @@ namespace archivos2015
                             else if (j == 0)
                             {
                                 //en archivo
-                                archivo.escribePtrAtEnt(i.Dir, i.Atributos[j + 1].Direccion);
                                 //en memoria
                                 i.ApuntaAt = i.Atributos[j + 1].Direccion;
                                 i.Atributos.RemoveAt(0);
@@ -328,7 +312,6 @@ namespace archivos2015
                             else
                             {
                                 //en archivo
-                                archivo.escribePtrAtAtri(i.Atributos[j - 1].Direccion, i.Atributos[j + 1].Direccion);
                                 //en memoria
                                 i.Atributos[j - 1].ApuntaAtri = i.Atributos[j + 1].Direccion;
                                 i.Atributos.RemoveAt(j);
@@ -346,10 +329,8 @@ namespace archivos2015
                             {
                                 //Quita el enlace 
                                 j.ApuntaPrim = -1;
-                                archivo.escribePrimA(j.Direccion, (long)-1);
                                 //Cambia el tipo de clave
                                 j.TClave = 3;
-                                archivo.escribeTClave(j.Direccion, 3);
                             }
         }
 
@@ -408,7 +389,6 @@ namespace archivos2015
                 foreach (Atributo j in i.Atributos)
                     if (j.ApuntaPrim != -1)
                     {
-                        nomEnt = archivo.getEntApuntada(j.ApuntaPrim);
                         foreach (Entidad k in respList)
                             if (k.Nombre == nomEnt)
                             {
@@ -416,36 +396,11 @@ namespace archivos2015
                                 respaldo.escribePrimA(j.Direccion, j.ApuntaPrim);
                             }
                     }
-            archivo.cierraArchivo();
-            File.Delete(nomDic);
-            File.Copy(auxNom + "bk", nomDic);
         }
 
         /// <summary>
         /// Crea el diccionario a partir de un archivo existente
         /// </summary>
-        public void abreArchivo()   
-        {
-            long dir = archivo.getEncabezado();
-
-            while (dir != -1)
-            {
-                //Obtiene el bloque de la entidad
-                Entidad entida = archivo.getBloqueEntidad(dir);
-                long nextAr = entida.ApuntaAt;
-                //Si tiene atributos
-                while (nextAr != -1)
-                {
-                    Atributo atri;
-                    //Obtiene el bloque del atributo
-                    atri = archivo.getBloqueAtributo(nextAr);
-                    entida.Atributos.Add(atri);
-                    nextAr = atri.ApuntaAtri;
-                }
-                entidades.Add(entida);
-                dir = entida.ApuntaEnt;
-            }
-        }
 
         /// <summary>
         /// Busca que en todas las entidades exista clave primaria

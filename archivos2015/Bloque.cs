@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace archivos2015
 {
+    [Serializable]
     public class Bloque
     {
         private long direccion;

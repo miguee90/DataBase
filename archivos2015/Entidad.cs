@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace archivos2015
 {
+    [Serializable]
     /// <summary>
     /// Clase entidad
     /// </summary>
@@ -19,13 +20,9 @@ namespace archivos2015
         private string nombre;
         List<Bloque> bloques;
 
-        public Entidad(string nom,long apuntaE,long apuntaA,long dir, long apuntaD)
+        public Entidad(string nom)
         {
             nombre = nom;
-            ptr_entidad=apuntaE;
-            ptr_atributos=apuntaA;
-            direccion = dir;
-            ptr_datos=apuntaD;
             atributos = new List<Atributo>();
             bloques = new List<Bloque>();
         }

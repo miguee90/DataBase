@@ -547,7 +547,7 @@ namespace archivos2015
                 ptrAtr = archivo.getLong();
                 dirActE = archivo.getLong();
                 ptrInds = archivo.getLong();
-                ent2=new Entidad(nomEnt,nextEnt,ptrAtr,dirActE,ptrInds);
+                ent2=new Entidad(nomEnt);
                 //recorre atributos si no es la misma entidad
                 if (dirActE != ent.Dir)
                 {

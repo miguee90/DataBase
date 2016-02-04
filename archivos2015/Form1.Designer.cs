@@ -32,11 +32,6 @@
             this.groupEntidad = new System.Windows.Forms.GroupBox();
             this.labelAvisos = new System.Windows.Forms.Label();
             this.dataGridEntidad = new System.Windows.Forms.DataGridView();
-            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPtrEnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPtrAt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDir = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPtrDat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupName = new System.Windows.Forms.GroupBox();
             this.textEnt = new System.Windows.Forms.TextBox();
             this.groupBotones = new System.Windows.Forms.GroupBox();
@@ -58,30 +53,17 @@
             this.textNomA = new System.Windows.Forms.TextBox();
             this.labelNombreA = new System.Windows.Forms.Label();
             this.dataGridAtr = new System.Windows.Forms.DataGridView();
-            this.ColumnNameA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnClv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPtrEA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPtrA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDirA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCveP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBotonA = new System.Windows.Forms.GroupBox();
             this.buttonDelA = new System.Windows.Forms.Button();
             this.buttonModA = new System.Windows.Forms.Button();
             this.buttonAddA = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.diccionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoDiccionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.abriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.organizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.secuencialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.indexadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.multilistasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNameA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnClv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBD = new System.Windows.Forms.ComboBox();
             this.groupEntidad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEntidad)).BeginInit();
             this.groupName.SuspendLayout();
@@ -91,7 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAtr)).BeginInit();
             this.groupBotonA.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupEntidad
@@ -124,11 +105,7 @@
             this.dataGridEntidad.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridEntidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridEntidad.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnName,
-            this.ColumnPtrEnt,
-            this.ColumnPtrAt,
-            this.ColumnDir,
-            this.ColumnPtrDat});
+            this.ColumnName});
             this.dataGridEntidad.GridColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridEntidad.Location = new System.Drawing.Point(6, 285);
             this.dataGridEntidad.Name = "dataGridEntidad";
@@ -137,33 +114,6 @@
             this.dataGridEntidad.TabIndex = 2;
             this.dataGridEntidad.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEntidad_CellClick);
             this.dataGridEntidad.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEntidad_CellDoubleClick);
-            // 
-            // ColumnName
-            // 
-            this.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnName.HeaderText = "Nombre";
-            this.ColumnName.Name = "ColumnName";
-            this.ColumnName.Width = 69;
-            // 
-            // ColumnPtrEnt
-            // 
-            this.ColumnPtrEnt.HeaderText = "Apuntador entidad";
-            this.ColumnPtrEnt.Name = "ColumnPtrEnt";
-            // 
-            // ColumnPtrAt
-            // 
-            this.ColumnPtrAt.HeaderText = "Apuntador Atributos";
-            this.ColumnPtrAt.Name = "ColumnPtrAt";
-            // 
-            // ColumnDir
-            // 
-            this.ColumnDir.HeaderText = "Dirección";
-            this.ColumnDir.Name = "ColumnDir";
-            // 
-            // ColumnPtrDat
-            // 
-            this.ColumnPtrDat.HeaderText = "Apuntador datos";
-            this.ColumnPtrDat.Name = "ColumnPtrDat";
             // 
             // groupName
             // 
@@ -398,11 +348,7 @@
             this.ColumnNameA,
             this.ColumnTipo,
             this.ColumnTam,
-            this.ColumnClv,
-            this.ColumnPtrEA,
-            this.ColumnPtrA,
-            this.ColumnDirA,
-            this.ColumnCveP});
+            this.ColumnClv});
             this.dataGridAtr.Enabled = false;
             this.dataGridAtr.GridColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridAtr.Location = new System.Drawing.Point(3, 285);
@@ -412,54 +358,6 @@
             this.dataGridAtr.TabIndex = 3;
             this.dataGridAtr.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridAtr_CellClick);
             this.dataGridAtr.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridAtr_CellDoubleClick);
-            // 
-            // ColumnNameA
-            // 
-            this.ColumnNameA.HeaderText = "Nombre";
-            this.ColumnNameA.Name = "ColumnNameA";
-            this.ColumnNameA.ReadOnly = true;
-            // 
-            // ColumnTipo
-            // 
-            this.ColumnTipo.HeaderText = "Tipo de dato";
-            this.ColumnTipo.Name = "ColumnTipo";
-            this.ColumnTipo.ReadOnly = true;
-            // 
-            // ColumnTam
-            // 
-            this.ColumnTam.HeaderText = "Tamaño";
-            this.ColumnTam.Name = "ColumnTam";
-            this.ColumnTam.ReadOnly = true;
-            // 
-            // ColumnClv
-            // 
-            this.ColumnClv.HeaderText = "Clave";
-            this.ColumnClv.Name = "ColumnClv";
-            this.ColumnClv.ReadOnly = true;
-            // 
-            // ColumnPtrEA
-            // 
-            this.ColumnPtrEA.HeaderText = "Apuntador entidad";
-            this.ColumnPtrEA.Name = "ColumnPtrEA";
-            this.ColumnPtrEA.ReadOnly = true;
-            // 
-            // ColumnPtrA
-            // 
-            this.ColumnPtrA.HeaderText = "Apuntador atributos";
-            this.ColumnPtrA.Name = "ColumnPtrA";
-            this.ColumnPtrA.ReadOnly = true;
-            // 
-            // ColumnDirA
-            // 
-            this.ColumnDirA.HeaderText = "Direccion";
-            this.ColumnDirA.Name = "ColumnDirA";
-            this.ColumnDirA.ReadOnly = true;
-            // 
-            // ColumnCveP
-            // 
-            this.ColumnCveP.HeaderText = "Clave Primaria";
-            this.ColumnCveP.Name = "ColumnCveP";
-            this.ColumnCveP.ReadOnly = true;
             // 
             // groupBotonA
             // 
@@ -512,94 +410,51 @@
             this.buttonAddA.UseVisualStyleBackColor = false;
             this.buttonAddA.Click += new System.EventHandler(this.buttonAddA_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.diccionarioToolStripMenuItem,
-            this.organizacionesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1034, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // diccionarioToolStripMenuItem
-            // 
-            this.diccionarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevoDiccionarioToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.abriToolStripMenuItem});
-            this.diccionarioToolStripMenuItem.Name = "diccionarioToolStripMenuItem";
-            this.diccionarioToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.diccionarioToolStripMenuItem.Text = "Diccionario";
-            // 
-            // nuevoDiccionarioToolStripMenuItem
-            // 
-            this.nuevoDiccionarioToolStripMenuItem.Name = "nuevoDiccionarioToolStripMenuItem";
-            this.nuevoDiccionarioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.nuevoDiccionarioToolStripMenuItem.Text = "Nuevo";
-            this.nuevoDiccionarioToolStripMenuItem.Click += new System.EventHandler(this.nuevoDiccionarioToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // abriToolStripMenuItem
-            // 
-            this.abriToolStripMenuItem.Name = "abriToolStripMenuItem";
-            this.abriToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.abriToolStripMenuItem.Text = "Abrir";
-            this.abriToolStripMenuItem.Click += new System.EventHandler(this.abriToolStripMenuItem_Click);
-            // 
-            // organizacionesToolStripMenuItem
-            // 
-            this.organizacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.secuencialToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.indexadaToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.multilistasToolStripMenuItem});
-            this.organizacionesToolStripMenuItem.Name = "organizacionesToolStripMenuItem";
-            this.organizacionesToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
-            this.organizacionesToolStripMenuItem.Text = "Organizaciones";
-            this.organizacionesToolStripMenuItem.Visible = false;
-            // 
-            // secuencialToolStripMenuItem
-            // 
-            this.secuencialToolStripMenuItem.Name = "secuencialToolStripMenuItem";
-            this.secuencialToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.secuencialToolStripMenuItem.Text = "Secuencial";
-            this.secuencialToolStripMenuItem.Click += new System.EventHandler(this.secuencialToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(127, 6);
-            // 
-            // indexadaToolStripMenuItem
-            // 
-            this.indexadaToolStripMenuItem.Name = "indexadaToolStripMenuItem";
-            this.indexadaToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.indexadaToolStripMenuItem.Text = "Indexada";
-            this.indexadaToolStripMenuItem.Click += new System.EventHandler(this.indexadaToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(127, 6);
-            // 
-            // multilistasToolStripMenuItem
-            // 
-            this.multilistasToolStripMenuItem.Name = "multilistasToolStripMenuItem";
-            this.multilistasToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
-            this.multilistasToolStripMenuItem.Text = "Multilistas";
-            this.multilistasToolStripMenuItem.Click += new System.EventHandler(this.multilistasToolStripMenuItem_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Diccionario(.dic)|*.dic";
+            // 
+            // ColumnName
+            // 
+            this.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnName.HeaderText = "Nombre";
+            this.ColumnName.Name = "ColumnName";
+            this.ColumnName.Width = 69;
+            // 
+            // ColumnNameA
+            // 
+            this.ColumnNameA.HeaderText = "Nombre";
+            this.ColumnNameA.Name = "ColumnNameA";
+            this.ColumnNameA.ReadOnly = true;
+            // 
+            // ColumnTipo
+            // 
+            this.ColumnTipo.HeaderText = "Tipo de dato";
+            this.ColumnTipo.Name = "ColumnTipo";
+            this.ColumnTipo.ReadOnly = true;
+            // 
+            // ColumnTam
+            // 
+            this.ColumnTam.HeaderText = "Tamaño";
+            this.ColumnTam.Name = "ColumnTam";
+            this.ColumnTam.ReadOnly = true;
+            // 
+            // ColumnClv
+            // 
+            this.ColumnClv.HeaderText = "Clave";
+            this.ColumnClv.Name = "ColumnClv";
+            this.ColumnClv.ReadOnly = true;
+            // 
+            // comboBD
+            // 
+            this.comboBD.FormattingEnabled = true;
+            this.comboBD.Location = new System.Drawing.Point(46, 7);
+            this.comboBD.Name = "comboBD";
+            this.comboBD.Size = new System.Drawing.Size(121, 21);
+            this.comboBD.TabIndex = 2;
+            this.comboBD.Text = "Bases de datos";
+            this.comboBD.SelectedValueChanged += new System.EventHandler(this.comboBD_SelectedValueChanged);
             // 
             // Form1
             // 
@@ -608,10 +463,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1034, 632);
+            this.Controls.Add(this.comboBD);
             this.Controls.Add(this.groupAtriubuto);
             this.Controls.Add(this.groupEntidad);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -630,10 +484,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAtr)).EndInit();
             this.groupBotonA.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -641,11 +492,6 @@
 
         private System.Windows.Forms.GroupBox groupEntidad;
         private System.Windows.Forms.GroupBox groupAtriubuto;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem diccionarioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nuevoDiccionarioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem abriToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBotones;
         private System.Windows.Forms.Button buttonDel;
         private System.Windows.Forms.Button buttonMod;
@@ -669,29 +515,16 @@
         private System.Windows.Forms.ComboBox comboEntidad;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label labelTam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPtrEnt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPtrAt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPtrDat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNameA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPtrEA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPtrA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDirA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCveP;
         private System.Windows.Forms.Label labelAvisos;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label labelAvisosA;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ToolStripMenuItem organizacionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem secuencialToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem indexadaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem multilistasToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNameA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClv;
+        private System.Windows.Forms.ComboBox comboBD;
     }
 }
 

@@ -51,7 +51,7 @@
             this.groupBox1.Size = new System.Drawing.Size(368, 72);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Nombre del nuevo diccionario";
+            this.groupBox1.Text = "Nombre nueva base de datos";
             // 
             // buttonOk
             // 
