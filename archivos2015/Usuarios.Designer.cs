@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupUsers = new System.Windows.Forms.GroupBox();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.groupPermisos = new System.Windows.Forms.GroupBox();
             this.checkBoxConsultas = new System.Windows.Forms.CheckBox();
             this.checkBoxSQL = new System.Windows.Forms.CheckBox();
@@ -39,17 +40,6 @@
             this.comboBD = new System.Windows.Forms.ComboBox();
             this.labelBD = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.labelVF = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.labelVI = new System.Windows.Forms.Label();
-            this.textRPass = new System.Windows.Forms.TextBox();
-            this.labelRPass = new System.Windows.Forms.Label();
-            this.textPass = new System.Windows.Forms.TextBox();
-            this.labelPass = new System.Windows.Forms.Label();
-            this.labelNombre = new System.Windows.Forms.Label();
-            this.textNombre = new System.Windows.Forms.TextBox();
-            this.buttonSave = new System.Windows.Forms.Button();
             this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColVF = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +50,16 @@
             this.ColMod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSQL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.labelVF = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.labelVI = new System.Windows.Forms.Label();
+            this.textRPass = new System.Windows.Forms.TextBox();
+            this.labelRPass = new System.Windows.Forms.Label();
+            this.textPass = new System.Windows.Forms.TextBox();
+            this.labelPass = new System.Windows.Forms.Label();
+            this.labelNombre = new System.Windows.Forms.Label();
+            this.textNombre = new System.Windows.Forms.TextBox();
             this.groupUsers.SuspendLayout();
             this.groupPermisos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -82,12 +82,23 @@
             this.groupUsers.Controls.Add(this.labelPass);
             this.groupUsers.Controls.Add(this.labelNombre);
             this.groupUsers.Controls.Add(this.textNombre);
-            this.groupUsers.Location = new System.Drawing.Point(69, 46);
+            this.groupUsers.Location = new System.Drawing.Point(29, 19);
             this.groupUsers.Name = "groupUsers";
-            this.groupUsers.Size = new System.Drawing.Size(832, 493);
+            this.groupUsers.Size = new System.Drawing.Size(872, 520);
             this.groupUsers.TabIndex = 0;
             this.groupUsers.TabStop = false;
             this.groupUsers.Text = "Usuarios";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.BackColor = System.Drawing.Color.OrangeRed;
+            this.buttonSave.Location = new System.Drawing.Point(382, 243);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(104, 31);
+            this.buttonSave.TabIndex = 16;
+            this.buttonSave.Text = "Guardar";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // groupPermisos
             // 
@@ -199,101 +210,8 @@
             this.ColCons});
             this.dataGridView1.Location = new System.Drawing.Point(0, 290);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(832, 188);
+            this.dataGridView1.Size = new System.Drawing.Size(872, 224);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(170, 155);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 9;
-            // 
-            // labelVF
-            // 
-            this.labelVF.AutoSize = true;
-            this.labelVF.Location = new System.Drawing.Point(51, 161);
-            this.labelVF.Name = "labelVF";
-            this.labelVF.Size = new System.Drawing.Size(73, 13);
-            this.labelVF.TabIndex = 8;
-            this.labelVF.Text = "Vigencia Final";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(170, 122);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 7;
-            // 
-            // labelVI
-            // 
-            this.labelVI.AutoSize = true;
-            this.labelVI.Location = new System.Drawing.Point(51, 128);
-            this.labelVI.Name = "labelVI";
-            this.labelVI.Size = new System.Drawing.Size(78, 13);
-            this.labelVI.TabIndex = 6;
-            this.labelVI.Text = "Vigencia Inicial";
-            // 
-            // textRPass
-            // 
-            this.textRPass.Location = new System.Drawing.Point(170, 93);
-            this.textRPass.Name = "textRPass";
-            this.textRPass.Size = new System.Drawing.Size(171, 20);
-            this.textRPass.TabIndex = 5;
-            // 
-            // labelRPass
-            // 
-            this.labelRPass.AutoSize = true;
-            this.labelRPass.Location = new System.Drawing.Point(51, 96);
-            this.labelRPass.Name = "labelRPass";
-            this.labelRPass.Size = new System.Drawing.Size(100, 13);
-            this.labelRPass.TabIndex = 4;
-            this.labelRPass.Text = "Repetir  contraseña";
-            // 
-            // textPass
-            // 
-            this.textPass.Location = new System.Drawing.Point(170, 65);
-            this.textPass.Name = "textPass";
-            this.textPass.Size = new System.Drawing.Size(171, 20);
-            this.textPass.TabIndex = 3;
-            // 
-            // labelPass
-            // 
-            this.labelPass.AutoSize = true;
-            this.labelPass.Location = new System.Drawing.Point(51, 68);
-            this.labelPass.Name = "labelPass";
-            this.labelPass.Size = new System.Drawing.Size(61, 13);
-            this.labelPass.TabIndex = 2;
-            this.labelPass.Text = "Contraseña";
-            // 
-            // labelNombre
-            // 
-            this.labelNombre.AutoSize = true;
-            this.labelNombre.Location = new System.Drawing.Point(51, 34);
-            this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(44, 13);
-            this.labelNombre.TabIndex = 1;
-            this.labelNombre.Text = "Nombre";
-            // 
-            // textNombre
-            // 
-            this.textNombre.Location = new System.Drawing.Point(170, 27);
-            this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(291, 20);
-            this.textNombre.TabIndex = 0;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.BackColor = System.Drawing.Color.OrangeRed;
-            this.buttonSave.Location = new System.Drawing.Point(382, 243);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(104, 31);
-            this.buttonSave.TabIndex = 16;
-            this.buttonSave.Text = "Guardar";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // ColName
             // 
@@ -344,6 +262,90 @@
             // 
             this.ColCons.HeaderText = "Consultas";
             this.ColCons.Name = "ColCons";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(170, 155);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.TabIndex = 9;
+            // 
+            // labelVF
+            // 
+            this.labelVF.AutoSize = true;
+            this.labelVF.Location = new System.Drawing.Point(51, 161);
+            this.labelVF.Name = "labelVF";
+            this.labelVF.Size = new System.Drawing.Size(73, 13);
+            this.labelVF.TabIndex = 8;
+            this.labelVF.Text = "Vigencia Final";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(170, 122);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 7;
+            // 
+            // labelVI
+            // 
+            this.labelVI.AutoSize = true;
+            this.labelVI.Location = new System.Drawing.Point(51, 128);
+            this.labelVI.Name = "labelVI";
+            this.labelVI.Size = new System.Drawing.Size(78, 13);
+            this.labelVI.TabIndex = 6;
+            this.labelVI.Text = "Vigencia Inicial";
+            // 
+            // textRPass
+            // 
+            this.textRPass.Location = new System.Drawing.Point(170, 93);
+            this.textRPass.Name = "textRPass";
+            this.textRPass.Size = new System.Drawing.Size(171, 20);
+            this.textRPass.TabIndex = 5;
+            this.textRPass.UseSystemPasswordChar = true;
+            // 
+            // labelRPass
+            // 
+            this.labelRPass.AutoSize = true;
+            this.labelRPass.Location = new System.Drawing.Point(51, 96);
+            this.labelRPass.Name = "labelRPass";
+            this.labelRPass.Size = new System.Drawing.Size(100, 13);
+            this.labelRPass.TabIndex = 4;
+            this.labelRPass.Text = "Repetir  contraseña";
+            // 
+            // textPass
+            // 
+            this.textPass.Location = new System.Drawing.Point(170, 65);
+            this.textPass.Name = "textPass";
+            this.textPass.Size = new System.Drawing.Size(171, 20);
+            this.textPass.TabIndex = 3;
+            this.textPass.UseSystemPasswordChar = true;
+            // 
+            // labelPass
+            // 
+            this.labelPass.AutoSize = true;
+            this.labelPass.Location = new System.Drawing.Point(51, 68);
+            this.labelPass.Name = "labelPass";
+            this.labelPass.Size = new System.Drawing.Size(61, 13);
+            this.labelPass.TabIndex = 2;
+            this.labelPass.Text = "Contraseña";
+            // 
+            // labelNombre
+            // 
+            this.labelNombre.AutoSize = true;
+            this.labelNombre.Location = new System.Drawing.Point(51, 34);
+            this.labelNombre.Name = "labelNombre";
+            this.labelNombre.Size = new System.Drawing.Size(44, 13);
+            this.labelNombre.TabIndex = 1;
+            this.labelNombre.Text = "Nombre";
+            // 
+            // textNombre
+            // 
+            this.textNombre.Location = new System.Drawing.Point(170, 27);
+            this.textNombre.Name = "textNombre";
+            this.textNombre.Size = new System.Drawing.Size(291, 20);
+            this.textNombre.TabIndex = 0;
             // 
             // Usuarios
             // 

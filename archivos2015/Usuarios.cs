@@ -40,8 +40,24 @@ namespace archivos2015
                 MessageBox.Show("Error, debes llenar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("SI");
+            {
+                if (matchPass())
+                {
+                    MessageBox.Show("SI");
+                }
+                else
+                    MessageBox.Show("Error, las contraseñas escritas no coinciden", "Errorr", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private bool matchPass()
+        {
+            if (textPass.Text == textRPass.Text)
+                return true;
+            else
+                return false;
+        }
+
         /// <summary>
         /// valida si algun campo esta vacio
         /// </summary>
@@ -60,7 +76,10 @@ namespace archivos2015
                 return false;
 
         }
-
+        /// <summary>
+        /// Activa todas las casillas en caso de seleccionar administrador
+        /// </summary>
+        /// 
         private void checkBoxAdmin_CheckedChanged(object sender, EventArgs e)
         {
             if(checkBoxAdmin.Checked==true)
