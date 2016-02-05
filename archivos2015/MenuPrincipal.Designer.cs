@@ -74,6 +74,7 @@
             this.buttonCE.TabIndex = 1;
             this.buttonCE.Text = "Consulta estructura";
             this.buttonCE.UseVisualStyleBackColor = false;
+            this.buttonCE.Click += new System.EventHandler(this.buttonCE_Click);
             // 
             // buttonNE
             // 

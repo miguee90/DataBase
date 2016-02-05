@@ -24,6 +24,11 @@ namespace archivos2015
             get { return bases; }
             set { bases = value; }
         }
+
+        public List<User> Usuarios
+        {
+            get { return usuarios; }
+        }
         #endregion
     }
 }

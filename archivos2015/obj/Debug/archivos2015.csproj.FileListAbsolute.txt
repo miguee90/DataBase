@@ -68,3 +68,20 @@ C:\Users\BALIO\Documents\proyectos\BD\archivos2015\obj\Debug\archivos2015.Proper
 C:\Users\BALIO\Documents\proyectos\BD\archivos2015\obj\Debug\archivos2015.secuencial.resources
 C:\Users\BALIO\Documents\proyectos\BD\archivos2015\obj\Debug\archivos2015.csproj.GenerateResource.Cache
 C:\Users\BALIO\Documents\proyectos\BD\archivos2015\obj\Debug\archivos2015.Usuarios.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\bin\Debug\archivos2015.exe.config
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.exe
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.pdb
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\bin\Debug\archivos2015.exe
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\bin\Debug\archivos2015.pdb
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.csprojResolveAssemblyReference.cache
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.MenuPrincipal.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.Multillaves.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.Indexada.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.Form1.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.GetDatos.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.NDic.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.Properties.Resources.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.secuencial.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.Usuarios.resources
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.csproj.GenerateResource.Cache
+C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.Consulta.resources

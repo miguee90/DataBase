@@ -23,7 +23,10 @@ namespace archivos2015
                 FileStream stream = new FileStream("manejador.txt", FileMode.Open);
                 BinaryFormatter formater = new BinaryFormatter();
                 if (stream != null)
+                {
                     manejador = (Manager)(formater.Deserialize(stream));
+                    stream.Close();
+                }
                 else
                     manejador = new Manager();
             }
@@ -52,6 +55,13 @@ namespace archivos2015
             Usuarios u = new Usuarios(manejador);
 
             u.ShowDialog();
+        }
+
+        private void buttonCE_Click(object sender, EventArgs e)
+        {
+            Consulta consulta = new Consulta(manejador);
+
+            consulta.ShowDialog();
         }
     }
 }
