@@ -102,10 +102,10 @@ namespace archivos2015
             dats = new List<string>();
             Entidad ent = diccionario.getEntByName(comboBox1.Text);
             labelAviso.Text = "";
-
+            /*
             foreach (Atributo i in ent.Atributos)
             {
-                GetDatos box = new GetDatos(i, diccionario,indexada.Archivo);
+                GetDatos box = new GetDatos(i, diccionario);
                 if (box.Dato == "error")
                 {
                     noInserta = true;
@@ -114,7 +114,7 @@ namespace archivos2015
 
                 box.ShowDialog();
                 dats.Add(box.Dato);
-            }
+            }*/
 
             if (!noInserta)
             {

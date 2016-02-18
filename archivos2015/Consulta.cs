@@ -25,12 +25,20 @@ namespace archivos2015
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Al iniciar la ventana carga las bases de datos en el combo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Consulta_Load(object sender, EventArgs e)
         {
             foreach (Diccionario i in manejador.Bases)
                 comboBD.Items.Add(i.NomDic);
         }
 
+        /// <summary>
+        /// Llena el dataGrid de usuarios
+        /// </summary>
         private void llenaData()
         {
             dataGridView1.Rows.Clear();
@@ -41,30 +49,35 @@ namespace archivos2015
             }
         }
 
+        /// <summary>
+        /// Cuando cambia el dato en el comboBox
+        /// </summary>
         private void comboBD_SelectedIndexChanged(object sender, EventArgs e)
         {
             llenaData();
             llenaTree();
         }
 
+        /// <summary>
+        /// Llena el arbol de la base de datos
+        /// </summary>
         private void llenaTree()
         {
             treeView1.Nodes.Clear();
             for (int i = 0; i < manejador.Bases.Count; i++)
-            {
                 if (manejador.Bases[i].NomDic == comboBD.Text)
                 {
                     treeView1.Nodes.Add(manejador.Bases[i].NomDic);
                     for (int j = 0; j < manejador.Bases[i].Entidades.Count; j++)
                     {
-                        treeView1.Nodes[i].Nodes.Add(manejador.Bases[i].Entidades[j].Nombre);
+                        treeView1.Nodes[0].Nodes.Add(manejador.Bases[i].Entidades[j].Nombre);
                         for (int k = 0; k < manejador.Bases[i].Entidades[j].Atributos.Count; k++)
-                        {
-                            treeView1.Nodes[i].Nodes[j].Nodes.Add(manejador.Bases[i].Entidades[j].Atributos[k].Nombre);
-                        }
+                            treeView1.Nodes[0].Nodes[j].Nodes.Add(manejador.Bases[i].Entidades[j].Atributos[k].Nombre
+                                +" :"+manejador.Bases[i].Entidades[j].Atributos[k].Tipo
+                                + " ," + manejador.Bases[i].Entidades[j].Atributos[k].Tam
+                                + " ,clave " + manejador.Bases[i].Entidades[j].Atributos[k].TClave);
                     }
                 }
-            }
         }
     }
 }

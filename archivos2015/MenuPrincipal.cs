@@ -63,5 +63,33 @@ namespace archivos2015
 
             consulta.ShowDialog();
         }
+
+        private void buttonInsert_Click(object sender, EventArgs e)
+        {
+            Login log = new Login(manejador,"altas");
+
+            log.ShowDialog();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            Login log = new Login(manejador, "bajas");
+
+            log.ShowDialog();
+        }
+
+        private void buttonMod_Click(object sender, EventArgs e)
+        {
+            Login log = new Login(manejador, "mod");
+
+            log.ShowDialog();
+        }
+
+        private void buttonCons_Click(object sender, EventArgs e)
+        {
+            Login log = new Login(manejador, "consultas");
+
+            log.ShowDialog();
+        }
     }
 }

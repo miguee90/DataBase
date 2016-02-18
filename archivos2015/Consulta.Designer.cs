@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.groupCons = new System.Windows.Forms.GroupBox();
-            this.comboBD = new System.Windows.Forms.ComboBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColVI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColVF = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,38 +40,34 @@
             this.ColMod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSQL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCons = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.comboBD = new System.Windows.Forms.ComboBox();
+            this.labelI = new System.Windows.Forms.Label();
             this.groupCons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupCons
             // 
+            this.groupCons.Controls.Add(this.labelI);
             this.groupCons.Controls.Add(this.label1);
             this.groupCons.Controls.Add(this.dataGridView1);
             this.groupCons.Controls.Add(this.treeView1);
             this.groupCons.Controls.Add(this.comboBD);
-            this.groupCons.Location = new System.Drawing.Point(38, 34);
+            this.groupCons.Location = new System.Drawing.Point(38, 12);
             this.groupCons.Name = "groupCons";
-            this.groupCons.Size = new System.Drawing.Size(775, 388);
+            this.groupCons.Size = new System.Drawing.Size(775, 433);
             this.groupCons.TabIndex = 0;
             this.groupCons.TabStop = false;
             // 
-            // comboBD
+            // label1
             // 
-            this.comboBD.FormattingEnabled = true;
-            this.comboBD.Location = new System.Drawing.Point(35, 35);
-            this.comboBD.Name = "comboBD";
-            this.comboBD.Size = new System.Drawing.Size(131, 21);
-            this.comboBD.TabIndex = 0;
-            this.comboBD.Text = "Base de datos";
-            this.comboBD.SelectedIndexChanged += new System.EventHandler(this.comboBD_SelectedIndexChanged);
-            // 
-            // treeView1
-            // 
-            this.treeView1.Location = new System.Drawing.Point(35, 81);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(285, 292);
-            this.treeView1.TabIndex = 1;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(379, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(204, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Usuarios con permiso en la base de datos";
             // 
             // dataGridView1
             // 
@@ -91,17 +85,8 @@
             this.ColCons});
             this.dataGridView1.Location = new System.Drawing.Point(355, 81);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(420, 292);
+            this.dataGridView1.Size = new System.Drawing.Size(420, 316);
             this.dataGridView1.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(379, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(204, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Usuarios con permiso en la base de datos";
             // 
             // ColName
             // 
@@ -148,6 +133,32 @@
             this.ColCons.HeaderText = "Consultas";
             this.ColCons.Name = "ColCons";
             // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(35, 105);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(285, 292);
+            this.treeView1.TabIndex = 1;
+            // 
+            // comboBD
+            // 
+            this.comboBD.FormattingEnabled = true;
+            this.comboBD.Location = new System.Drawing.Point(35, 23);
+            this.comboBD.Name = "comboBD";
+            this.comboBD.Size = new System.Drawing.Size(131, 21);
+            this.comboBD.TabIndex = 0;
+            this.comboBD.Text = "Base de datos";
+            this.comboBD.SelectedIndexChanged += new System.EventHandler(this.comboBD_SelectedIndexChanged);
+            // 
+            // labelI
+            // 
+            this.labelI.AutoSize = true;
+            this.labelI.Location = new System.Drawing.Point(33, 71);
+            this.labelI.Name = "labelI";
+            this.labelI.Size = new System.Drawing.Size(200, 13);
+            this.labelI.TabIndex = 13;
+            this.labelI.Text = "Claves: 1- Pimaria 2- Foranea 3- Ninguna";
+            // 
             // Consulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,5 +193,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMod;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSQL;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCons;
+        private System.Windows.Forms.Label labelI;
     }
 }

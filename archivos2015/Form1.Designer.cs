@@ -32,6 +32,7 @@
             this.groupEntidad = new System.Windows.Forms.GroupBox();
             this.labelAvisos = new System.Windows.Forms.Label();
             this.dataGridEntidad = new System.Windows.Forms.DataGridView();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupName = new System.Windows.Forms.GroupBox();
             this.textEnt = new System.Windows.Forms.TextBox();
             this.groupBotones = new System.Windows.Forms.GroupBox();
@@ -58,12 +59,11 @@
             this.buttonModA = new System.Windows.Forms.Button();
             this.buttonAddA = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBD = new System.Windows.Forms.ComboBox();
             this.ColumnNameA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnClv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBD = new System.Windows.Forms.ComboBox();
             this.groupEntidad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEntidad)).BeginInit();
             this.groupName.SuspendLayout();
@@ -114,6 +114,13 @@
             this.dataGridEntidad.TabIndex = 2;
             this.dataGridEntidad.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEntidad_CellClick);
             this.dataGridEntidad.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEntidad_CellDoubleClick);
+            // 
+            // ColumnName
+            // 
+            this.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnName.HeaderText = "Nombre";
+            this.ColumnName.Name = "ColumnName";
+            this.ColumnName.Width = 69;
             // 
             // groupName
             // 
@@ -415,12 +422,15 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Diccionario(.dic)|*.dic";
             // 
-            // ColumnName
+            // comboBD
             // 
-            this.ColumnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnName.HeaderText = "Nombre";
-            this.ColumnName.Name = "ColumnName";
-            this.ColumnName.Width = 69;
+            this.comboBD.FormattingEnabled = true;
+            this.comboBD.Location = new System.Drawing.Point(46, 7);
+            this.comboBD.Name = "comboBD";
+            this.comboBD.Size = new System.Drawing.Size(121, 21);
+            this.comboBD.TabIndex = 2;
+            this.comboBD.Text = "Bases de datos";
+            this.comboBD.SelectedValueChanged += new System.EventHandler(this.comboBD_SelectedValueChanged);
             // 
             // ColumnNameA
             // 
@@ -445,16 +455,6 @@
             this.ColumnClv.HeaderText = "Clave";
             this.ColumnClv.Name = "ColumnClv";
             this.ColumnClv.ReadOnly = true;
-            // 
-            // comboBD
-            // 
-            this.comboBD.FormattingEnabled = true;
-            this.comboBD.Location = new System.Drawing.Point(46, 7);
-            this.comboBD.Name = "comboBD";
-            this.comboBD.Size = new System.Drawing.Size(121, 21);
-            this.comboBD.TabIndex = 2;
-            this.comboBD.Text = "Bases de datos";
-            this.comboBD.SelectedValueChanged += new System.EventHandler(this.comboBD_SelectedValueChanged);
             // 
             // Form1
             // 
@@ -520,11 +520,11 @@
         private System.Windows.Forms.Label labelAvisosA;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.ComboBox comboBD;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNameA;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTam;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClv;
-        private System.Windows.Forms.ComboBox comboBD;
     }
 }
 

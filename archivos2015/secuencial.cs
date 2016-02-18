@@ -18,12 +18,30 @@ namespace archivos2015
         List<string> dats;
         bool DelD,modD;
 
+        //***************************Variables base de datos********************************
+        Manager manejador;
+        string funcion;
+        User usuario;
+        Diccionario baseActual;
+
         public secuencial()
         {
             InitializeComponent();
             dats = new List<string>();
             DelD = false;
             modD = false;
+        }
+
+        public secuencial(Manager man, string func,User user)
+        {
+            InitializeComponent();
+            dats = new List<string>();
+            DelD = false;
+            modD = false;
+            manejador = man;
+            funcion = func;
+            usuario = user;
+            inicializaFuncion();
         }
 
         public secuencial(Diccionario dicc)
@@ -36,6 +54,41 @@ namespace archivos2015
             DelD = false;
             modD = false;
         }
+
+        /// <summary>
+        /// Funcion que permite inicializar la pantalla de acuerdo a si es alta, baja o modificacion
+        /// </summary>
+        private void inicializaFuncion()
+        {
+            this.Text = funcion;
+            foreach(Diccionario i in manejador.Bases)
+            {
+                if (usuario.BaseDatos == i.NomDic)
+                { 
+                    comboBox2.Items.Add(usuario.BaseDatos);
+                    baseActual = i;
+                }
+            }
+            switch(funcion)
+            {
+                case "altas":
+                    buttonAddD.Visible = true;
+                    buttonDelD.Visible = false;
+                    buttonModD.Visible = false;
+                    break;
+                case "bajas":
+                    buttonAddD.Visible = false;
+                    buttonDelD.Visible = true;
+                    buttonModD.Visible = false;
+                    break;
+                case "mod":
+                    buttonAddD.Visible = false;
+                    buttonDelD.Visible = false;
+                    buttonModD.Visible = true;
+                    break;
+            }
+        }
+
         //Abrir organizacion desde un archivo
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -61,10 +114,8 @@ namespace archivos2015
             groupBotones.Visible = true;
 
             //Carga las las columnas en el datagrid
-            ent = organizacion.Dic.getEntByName(comboBox1.Text);
-            dataGridData.ColumnCount = ent.Atributos.Count+2;
-            dataGridData.Columns[0].Name = "Direccion";
-            dataGridData.Columns[1].Name = "Apunta siguiente bloque";
+            ent = baseActual.getEntByName(comboBox1.Text);
+            dataGridData.ColumnCount = ent.Atributos.Count;
 
             for (int i = 0; i < ent.Atributos.Count; i++)
             {
@@ -75,7 +126,7 @@ namespace archivos2015
                 else
                     nombre=ent.Atributos[i].Nombre + "(" + ent.Atributos[i].Tipo + ")";
 
-                dataGridData.Columns[i + 2].Name = nombre;
+                dataGridData.Columns[i].Name = nombre;
             }
 
             llenaData(ent);
@@ -83,16 +134,19 @@ namespace archivos2015
         //Boton agrega bloque de datos
         private void buttonAddD_Click(object sender, EventArgs e)
         {
-            Entidad ent = organizacion.Dic.getEntByName(comboBox1.Text);
+            Entidad ent = baseActual.getEntByName(comboBox1.Text);
             bool noInserta = false;
             dats = new List<string>();
             DelD = false;
             modD = false;
             labelAvisos.Text = "";
 
-            foreach (Atributo i in ent.Atributos)
+            //Llena bitacora
+            llenaBitacora(dats, DateTime.Today.ToShortDateString(), "", "", usuario.Nombre, "", "");
+
+            for (int i=6;i<ent.Atributos.Count; i++)
             {
-                GetDatos box = new GetDatos(i, organizacion);
+                GetDatos box = new GetDatos(ent.Atributos[i], baseActual,ent);
                 if (box.Dato == "error")
                 {
                     noInserta = true;
@@ -106,53 +160,36 @@ namespace archivos2015
             if (!noInserta)
             {
                 //Inserta el bloque y los datos del registro
-                organizacion.insertaBloqueDatos(ent, dats);
+                ent.ListaRegistros.Add(dats);
+
                 //Llena datagrid
                 llenaData(ent);
             }
         }
+
+        /// <summary>
+        /// llena los datos de la bitacora
+        /// </summary>
+        public void llenaBitacora(List<string> d,string f_a,string f_b,string f_m,string u_a,string u_b,string u_m)
+        {
+            List<string> datos = d;
+
+            datos.Add(f_a);
+            datos.Add(f_b);
+            datos.Add(f_m);
+            datos.Add(u_a);
+            datos.Add(u_b);
+            datos.Add(u_m);
+        }
+
         //Llena el datagrid
         private void llenaData(Entidad ent)
         {
-            List<string> registro = new List<string>();
-            long dirBloq = ent.ApuntaDat;
-            long magdiel = 0;
-            string auxCad = "";
-
             dataGridData.Rows.Clear();
-
-            while (dirBloq != -1)
-            {
-                organizacion.Archivo.setStreamPosition(dirBloq);
-                registro.Add(organizacion.Archivo.getLong().ToString());
-                dirBloq=organizacion.Archivo.getLong();
-                registro.Add(dirBloq.ToString());
-                foreach (Atributo i in ent.Atributos)
-                {
-                    switch (i.Tipo)
-                    {
-                        case "int":
-                            registro.Add(organizacion.Archivo.getInt().ToString());
-                            break;
-                        case "float":
-                            registro.Add(organizacion.Archivo.getDouble().ToString());
-                            break;
-                        case "char":
-                            registro.Add(organizacion.Archivo.getChar().ToString());
-                            break;
-                        case "string":
-                            magdiel = organizacion.Archivo.Positon;
-                            auxCad = organizacion.Archivo.getString(i.Tam);
-                            registro.Add(auxCad);
-                            organizacion.Archivo.setStreamPosition(magdiel + i.Tam);
-                            break;
-                    }
-                }
-                //Agregar al data grid los elementos de la lista de cadenas
-                dataGridData.Rows.Add(registro.ToArray());
-                registro = new List<string>();
-            }
+            foreach(List<string> i in ent.ListaRegistros)
+                dataGridData.Rows.Add(i.ToArray());
         }
+
         //Boton que activa la bandera de eliminacion
         private void buttonDelD_Click(object sender, EventArgs e)
         {
@@ -224,21 +261,22 @@ namespace archivos2015
                 }
             }
         }
+
+        private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
+        {
+            groupBoxCombo1.Visible = true;
+            foreach (Entidad i in baseActual.Entidades)
+            {
+                comboBox1.Items.Add(i.Nombre);
+            }
+        }
+
         //Boton que activa la modificacion del bloque
         private void buttonModD_Click(object sender, EventArgs e)
         {
             modD = true;
             DelD = false;
             labelAvisos.Text = "Da doble click en el bloque que deseas modificar";
-        }
-
-        private void secuencial_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            string nombre=diccionario.NomDic.Substring(0,diccionario.NomDic.Length-3);
-            organizacion.Archivo.cierraArchivo();
-            if (File.Exists("orgs/" + nombre + "sec"))
-                File.Delete("orgs/" + nombre + "sec");
-            File.Copy(nombre + "sec", "orgs/" + nombre + "sec");
         }
     }
 }

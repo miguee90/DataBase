@@ -556,19 +556,7 @@ namespace archivos2015
                     {
                         
                         archivo.setStreamPosition(ptrAtr);
-                        Atributo atr = new Atributo(
-                        archivo.getStringS(),
-                        archivo.getStringS(),
-                        archivo.getInt(),
-                        tClave = archivo.getInt(),
-                        archivo.getLong(),
-                        ptrAtr = archivo.getLong(),
-                        //direccion
-                        archivo.getLong(),
-                        //Apunta clave prim
-                        apuntaEnt=archivo.getLong());
-
-                        atrs.Add(atr);
+                        
                         if (ent.Dir == apuntaEnt)
                             siApunta = true;
                     }

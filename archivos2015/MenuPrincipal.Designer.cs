@@ -109,6 +109,7 @@
             this.buttonCons.TabIndex = 3;
             this.buttonCons.Text = "Consultas";
             this.buttonCons.UseVisualStyleBackColor = false;
+            this.buttonCons.Click += new System.EventHandler(this.buttonCons_Click);
             // 
             // buttonMod
             // 
@@ -119,6 +120,7 @@
             this.buttonMod.TabIndex = 2;
             this.buttonMod.Text = "Modificaciones";
             this.buttonMod.UseVisualStyleBackColor = false;
+            this.buttonMod.Click += new System.EventHandler(this.buttonMod_Click);
             // 
             // buttonDelete
             // 
@@ -129,6 +131,7 @@
             this.buttonDelete.TabIndex = 1;
             this.buttonDelete.Text = "Bajas";
             this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonInsert
             // 
@@ -139,6 +142,7 @@
             this.buttonInsert.TabIndex = 0;
             this.buttonInsert.Text = "Altas";
             this.buttonInsert.UseVisualStyleBackColor = false;
+            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
             // groupSQL
             // 

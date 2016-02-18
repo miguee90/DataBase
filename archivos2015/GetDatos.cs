@@ -16,6 +16,7 @@ namespace archivos2015
         private Atributo atributo;
         private Diccionario diccionario;
         private Organizacion organizacion;
+        private Entidad entidad;
         private Archivo archivo;
         bool noSecu;
         string viejo;
@@ -27,12 +28,12 @@ namespace archivos2015
             get { return cambioPrim; }
         }
 
-        public GetDatos(Atributo atri,Organizacion org)
+        public GetDatos(Atributo atri,Diccionario dic,Entidad ent)
         {
             InitializeComponent();
             atributo = atri;
-            diccionario = org.Dic;
-            organizacion = org;
+            diccionario = dic;
+            entidad = ent;
             noSecu = false;
             viejo = "";
             modificando = false;
@@ -78,30 +79,14 @@ namespace archivos2015
             }
         }
 
-        public GetDatos(Atributo atri, Diccionario dicc,Archivo arch)
-        {
-            InitializeComponent();
-            atributo = atri;
-            diccionario = dicc;
-            archivo = arch;
-            noSecu = true;
-            modificando = false;
-            cambioPrim = false;
-            groupCaptura.Text = atributo.Nombre + "(" + atributo.Tipo + ")";
-            if (atributo.TClave == 2)
-            {
-                textCaptura.Visible = false;
-                comboExternas.Visible = true;
-                //Llena el combo con los datos de clave primaria
-                if (!llenaComboIndexada(atributo.ApuntaPrim))
-                {
-                    MessageBox.Show("Error aun no existen datos para llenar la clave externa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dato = "error";
-                    this.Close();
-                }
-            }
-        }
-
+        /// <summary>
+        /// Constructor para modificaciones
+        /// </summary>
+        /// <param name="atri"></param>
+        /// <param name="dicc"></param>
+        /// <param name="arch"></param>
+        /// <param name="dato"></param>
+        /// <param name="mod"></param>
         public GetDatos(Atributo atri, Diccionario dicc, Archivo arch,string dato,bool mod)
         {
             InitializeComponent();
@@ -119,13 +104,13 @@ namespace archivos2015
             {
                 textCaptura.Visible = false;
                 comboExternas.Visible = true;
-                //Llena el combo con los datos de clave primaria
+                /*Llena el combo con los datos de clave primaria
                 if (!llenaComboIndexada(atributo.ApuntaPrim))
                 {
                     MessageBox.Show("Error aun no existen datos para llenar la clave externa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dato = "error";
                     this.Close();
-                }
+                }*/
             }
         }
 
@@ -319,27 +304,25 @@ namespace archivos2015
             }
         }
 
-        private bool llenaCombo(long dirEnt,Diccionario dicc)
+        private bool llenaCombo(string dirEnt,Diccionario dicc)
         {
             List<string> listaDatos = new List<string>();
 
             //Obtener la entidad a la que apunta la direccion
-            Entidad ent = dicc.getEnteByDir(dirEnt);
-            //Obtener los datos que que esten en esa entidad
-            if (ent.ApuntaDat == -1)
-                return false;
-            else
+            Entidad ent = dicc.getEntByName(dirEnt);
+           foreach(List<string> i in ent.ListaRegistros)
+                for(int j=0;j<ent.Atributos.Count;j++)
+                    if(ent.Atributos[j].TClave==1)
+                        listaDatos.Add(i[j]);
+            if (listaDatos.Count > 0)
             {
-                //Obtiene todos los datos en una lista de cadenas
-                listaDatos = organizacion.getDatosPrimarios(dirEnt);
-
                 foreach (string i in listaDatos)
-                {
                     comboExternas.Items.Add(i);
-                }
-            }
 
-            return true;
+                return true;
+            }
+            else
+                return false;
         }
 
         private bool llenaComboIndexada(long dirEnt)
@@ -368,61 +351,13 @@ namespace archivos2015
         private bool buscaClavePrimRepetida(string nNom)
         {
             bool repetido = false;
-            Entidad ent = diccionario.getEnteByDir(atributo.ApuntaEntidad);
-            long dirBloq = ent.ApuntaDat;
-            long inicio = 0;
+            Entidad ent = entidad;
 
-            while (dirBloq != -1)
-            {
-                organizacion.Archivo.setStreamPosition(dirBloq);
-                organizacion.Archivo.getLong();
-                dirBloq = organizacion.Archivo.getLong();
-                foreach (Atributo i in ent.Atributos)
-                {
-                    switch (i.Tipo)
-                    {
-                        case "int":
-                            if (i.TClave == 1)
-                            {
-                                if (organizacion.Archivo.getInt().ToString() == nNom)
-                                    repetido = true;
-                            }
-                            else
-                                organizacion.Archivo.getInt();
-                            break;
-                        case "float":
-                            if (i.TClave == 1)
-                            {
-                                if (organizacion.Archivo.getDouble().ToString() == nNom)
-                                    repetido = true;
-                            }
-                            else
-                                organizacion.Archivo.getDouble();
-                            break;
-                        case "char":
-                            if (i.TClave == 1)
-                            {
-                                if (organizacion.Archivo.getChar().ToString() == nNom)
-                                    repetido = true;
-                            }
-                            else
-                                organizacion.Archivo.getChar();
-                            break;
-                        case "string":
-                            if (i.TClave == 1)
-                            {
-                                string auxCad = organizacion.Archivo.getString(i.Tam);
-                                if (auxCad == nNom)
-                                    repetido = true;
-                            }
-                            else
-                            {
-                                organizacion.Archivo.getString(i.Tam);
-                            }
-                            break;
-                    }
-                }
-            }
+            for(int i=0;i<ent.ListaRegistros.Count;i++)
+                for(int j=0;j<ent.Atributos.Count;j++)
+                    if(ent.Atributos[j].TClave==1)
+                        if(ent.ListaRegistros[i][j]==nNom)
+                            repetido = true;
 
             return repetido;
         }

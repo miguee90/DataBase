@@ -292,10 +292,9 @@ namespace archivos2015
             long cuatro = reader.ReadInt64();
             long cinco = reader.ReadInt64();
             long seis = reader.ReadInt64();
-            long siete = reader.ReadInt64();
 
             Atributo atr = new Atributo(nombre, uno, dos,
-                tres, cuatro, cinco, seis, siete);
+                tres, cuatro, cinco, seis, "");
 
             return atr;
         }

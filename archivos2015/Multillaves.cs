@@ -64,10 +64,10 @@ namespace archivos2015
             bool noInserta = false;
 
             Entidad ent = diccionario.getEntByName(comboEnt.Text);
-
+            /*
             foreach (Atributo i in ent.Atributos)
             {
-                GetDatos box = new GetDatos(i, diccionario, multilistas.Archivo);
+                GetDatos box = new GetDatos(i, diccionario);
                 if (box.Dato == "error")
                 {
                     noInserta = true;
@@ -76,7 +76,7 @@ namespace archivos2015
 
                 box.ShowDialog();
                 dats.Add(box.Dato);
-            }
+            }*/
 
             if (!noInserta)
             {
@@ -225,10 +225,10 @@ namespace archivos2015
 
                 multilistas.eliminaBloque(dirBloq, ent);
 
-
+                /*
                 foreach (Atributo i in ent.Atributos)
                 {
-                    GetDatos box = new GetDatos(i, diccionario, multilistas.Archivo);
+                    GetDatos box = new GetDatos(i, diccionario);
                     if (box.Dato == "error")
                     {
                         noInserta = true;
@@ -237,7 +237,7 @@ namespace archivos2015
 
                     box.ShowDialog();
                     dats.Add(box.Dato);
-                }
+                }*/
 
                 if (!noInserta)
                 {

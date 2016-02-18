@@ -19,21 +19,32 @@ namespace archivos2015
         private long ptr_datos;
         private string nombre;
         List<Bloque> bloques;
+        /*****************************************BD*********************************************/
+        private List<List<string>> listaRegistros = new List<List<string>>();
 
         public Entidad(string nom)
         {
             nombre = nom;
             atributos = new List<Atributo>();
             bloques = new List<Bloque>();
+            Atributo fechaA = new Atributo("fecha_A", "string", 8, 3, 0, 0, 0, "");
+            Atributo fechaB = new Atributo("fecha_B", "string", 8, 3, 0, 0, 0, "");
+            Atributo fechaM = new Atributo("fecha_M", "string", 8, 3, 0, 0, 0, "");
+            Atributo usuarioA = new Atributo("usuario_A", "string", 8, 3, 0, 0, 0, "");
+            Atributo usuarioB = new Atributo("usuario_B", "string", 8, 3, 0, 0, 0, "");
+            Atributo usuarioM = new Atributo("usuario_M", "string", 8, 3, 0, 0, 0, "");
+            atributos.Add(fechaA);
+            atributos.Add(fechaB);
+            atributos.Add(fechaM);
+            atributos.Add(usuarioA);
+            atributos.Add(usuarioB);
+            atributos.Add(usuarioM);
+            listaRegistros = new List<List<string>>();
         }
 
         public void insertaAtributo(Atributo atr)
         {
             atributos.Add(atr);
-            //ordena los atributos en orden alfabetico
-            atributos.Sort((p, q) => string.Compare(p.Nombre, q.Nombre));
-            //actualiza apuntadores a atributos
-            actualizaPtrs();
         }
 
         private void actualizaPtrs()
@@ -52,6 +63,11 @@ namespace archivos2015
         public List<Bloque> ListBloq
         {
             get { return bloques; }
+        }
+
+        public List<List<string>> ListaRegistros
+        {
+            get { return listaRegistros; }
         }
 
         public long ApuntaEnt

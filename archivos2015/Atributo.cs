@@ -21,9 +21,9 @@ namespace archivos2015
         private long ptrEnt;
         private long direccion;
         private long ptrAtri;
-        private long apuntaPrim;
+        private string apuntaPrim;
 
-        public Atributo(string nom,string tip,int t,int clave,long apuntaEnt,long apuntaAtr,long dir,long ptrPrim)
+        public Atributo(string nom,string tip,int t,int clave,long apuntaEnt,long apuntaAtr,long dir,string ptrPrim)
         {
             nombre = nom;
             tipo = tip;
@@ -33,6 +33,7 @@ namespace archivos2015
             ptrAtri = apuntaAtr;
             direccion = dir;
             apuntaPrim = ptrPrim;
+
         }
 
         #region getter y setters
@@ -74,7 +75,7 @@ namespace archivos2015
             set { direccion = value; }
         }
 
-        public long ApuntaPrim
+        public string ApuntaPrim
         {
             get { return apuntaPrim; }
             set { apuntaPrim = value; }

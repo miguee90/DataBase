@@ -78,7 +78,6 @@ namespace archivos2015
                 if (MessageBox.Show("Cuando abres una organizacion de datos ya no podras modificar el diccionario \n ¿Deseas continuar",
                     "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
                 {
-                    diccionario.mantenimiento();
                     secuencial ventana = new secuencial(diccionario);
 
                     org = true;
@@ -100,7 +99,6 @@ namespace archivos2015
                 if (MessageBox.Show("Cuando abres una organizacion de datos ya no podras modificar el diccionario \n ¿Deseas continuar",
                     "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
                 {
-                    diccionario.mantenimiento();
                     Indexada ventana = new Indexada(diccionario);
 
                     org = true;
@@ -122,7 +120,6 @@ namespace archivos2015
                 if (MessageBox.Show("Cuando abres una organizacion de datos ya no podras modificar el diccionario \n ¿Deseas continuar",
                     "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
                 {
-                    diccionario.mantenimiento();
                     Multillaves multi = new Multillaves(diccionario);
 
                     org = true;
@@ -295,7 +292,7 @@ namespace archivos2015
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            long primEnt = -1;
+            string primEnt = "";
             bool fueError = false;
             Atributo atr;
 
@@ -320,7 +317,7 @@ namespace archivos2015
                 }
                 else if (getRadioClv() == 2)
                 {
-                    primEnt = diccionario.getDirEnt(comboEntidad.Text);
+                    primEnt = comboEntidad.Text;
                 }
                 //Area de insercion de datos
                 if(diccionario.buscaAtributoRepetido(groupAtriubuto.Text,textNomA.Text))

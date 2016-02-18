@@ -137,7 +137,6 @@ namespace archivos2015
                     }
                     else        //Si es un elemento intermedio de la lista
                     {
-                        entidades[i - 1].ApuntaEnt = entidades[i + 1].Dir;
                         //Cambiar direcciones en archivo
                         entidades.RemoveAt(i);
                     }
@@ -158,10 +157,10 @@ namespace archivos2015
             foreach (Entidad i in entidades)
                 if (i.Nombre != selfEnt)
                     foreach (Atributo j in i.Atributos)
-                        if (j.ApuntaPrim == selfDir)
+                        if (j.ApuntaPrim == selfEnt)
                         {
                             //en memoria
-                            j.ApuntaPrim = -1;
+                            j.ApuntaPrim = "";
                             //en archivo
                             //Cambia tipo de clave
                             j.TClave = 3;
@@ -325,77 +324,13 @@ namespace archivos2015
                 if (i.Dir != ent.Dir)
                     foreach (Atributo j in i.Atributos)
                         if (j.TClave == 2)
-                            if (j.ApuntaPrim == ent.Dir)
+                            if (j.ApuntaPrim == ent.Nombre)
                             {
                                 //Quita el enlace 
-                                j.ApuntaPrim = -1;
+                                j.ApuntaPrim = "";
                                 //Cambia el tipo de clave
                                 j.TClave = 3;
                             }
-        }
-
-        /// <summary>
-        /// Reescribe la totalidad del archivo quitando los elementos eliminados
-        /// </summary>
-        public void mantenimiento()
-        {
-            string auxNom = nomDic.Substring(0, nomDic.Length - 3);
-            //Se crea un archivo de respaldo
-            Archivo respaldo = new Archivo(auxNom+"bk",true);
-            List<Entidad> respList = new List<Entidad>();
-            respList = entidades;
-            string nomEnt="";
-
-            respaldo.escribeCabecera(respList[0].Dir);
-            //Cambia direcciones
-            foreach (Entidad i in respList)
-            {
-                //cambia la direccion de la entidad en memoria
-                i.Dir = respaldo.getDir();
-                //escribe en archivo la direccion de la entidad
-                respaldo.escribeEntidad(i);
-                //si hay atributos
-                if (i.ApuntaAt != -1)
-                {
-                    //se llena el apuntador de la entidad con la dir del atributo
-                    i.ApuntaAt = respaldo.getDir();
-                    respaldo.escribePtrAtEnt(i.Dir, i.ApuntaAt);
-                    //recorre los atributos
-                    foreach (Atributo j in i.Atributos)
-                    {
-                        j.Direccion = respaldo.getDir();
-                        respaldo.escrbeAtributo(j);
-                        //si hay otro atributo
-                        if (j.ApuntaAtri != -1)
-                        {
-                            //cambia el apuntador a siguiente 
-                            j.ApuntaAtri = respaldo.getDir();
-                            respaldo.escribePtrAtAtri(j.Direccion, j.ApuntaAtri);
-                        }
-                        //cambia la direccion de apunta a entidad
-                        j.ApuntaEntidad = i.Dir;
-                        //Cambia la direccion de apuntador a entidad
-                        respaldo.escribePtrEntAtr(j.Direccion, j.ApuntaEntidad);
-                    }
-                }
-                if (i.ApuntaEnt != -1)
-                {
-                    i.ApuntaEnt = respaldo.getDir();
-                    respaldo.escribePtrEntEnt(i.Dir, i.ApuntaEnt);
-                }
-            }
-            //recorre otra vez para cambiar las direcciones de los apuntadores a claves primarias
-            foreach (Entidad i in respList)
-                foreach (Atributo j in i.Atributos)
-                    if (j.ApuntaPrim != -1)
-                    {
-                        foreach (Entidad k in respList)
-                            if (k.Nombre == nomEnt)
-                            {
-                                j.ApuntaPrim = k.Dir;
-                                respaldo.escribePrimA(j.Direccion, j.ApuntaPrim);
-                            }
-                    }
         }
 
         /// <summary>

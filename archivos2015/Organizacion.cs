@@ -335,6 +335,7 @@ namespace archivos2015
 
         private void eliminaRecursivo(string nomEnt, string clavePrim)
         {
+            /*
             Entidad ent = diccionario.getEntByName(nomEnt);
             long auxDir=0;
 
@@ -401,7 +402,7 @@ namespace archivos2015
                                         break;
                                 }
                             }
-                        }
+                        }*/
         }
     }
 }
