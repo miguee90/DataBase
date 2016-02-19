@@ -18,6 +18,22 @@ namespace archivos2015
             usuarios = new List<User>();
         }
 
+        /// <summary>
+        /// Obtiene una base de datos por medio de su nombre
+        /// </summary>
+        /// <param name="nombre">El nombre de la base de datos que desea buscar.</param>
+        /// <returns>Regresa la base de datos del tipo diccionario.</returns>
+        public Diccionario getBDbyName(string nombre)
+        {
+            Diccionario baseVacia = null;
+
+            foreach(Diccionario i in bases)
+                if(i.NomDic==nombre)
+                    return i;
+
+            return baseVacia;
+        }
+
         #region Getter y setters
         public List<Diccionario> Bases
         {

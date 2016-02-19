@@ -87,3 +87,4 @@ C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Deb
 C:\Users\miguel\Google Drive\Escuela\Base de datos\DataBase\archivos2015\obj\Debug\archivos2015.Consulta.resources
 C:\Users\BALIO\Documents\proyectos\BD\archivos2015\obj\Debug\archivos2015.Consulta.resources
 C:\Users\BALIO\Documents\proyectos\BD\archivos2015\obj\Debug\archivos2015.login.resources
+C:\Users\BALIO\Documents\proyectos\BD\archivos2015\obj\Debug\archivos2015.Consultas.resources

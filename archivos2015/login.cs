@@ -14,6 +14,7 @@ namespace archivos2015
     {
         Manager manejador;
         string permiso;
+        User user;
 
         public Login()
         {
@@ -40,6 +41,7 @@ namespace archivos2015
                 {
                     if(i.Nombre==textBoxUser.Text&&textBoxPass.Text==i.Password)
                     {
+                        user = i;
                         if (!i.Admin)
                         {
                             switch(permiso)
@@ -69,9 +71,19 @@ namespace archivos2015
                             else
                             {
                                 noExiste = true;
-                                secuencial datos = new secuencial(manejador,permiso,i);
-                                datos.ShowDialog();
-                                this.Close();
+                                if(permiso=="consultas")
+                                {
+                                    //Vista para consultas
+                                    Consultas con = new Consultas(manejador, user.BaseDatos);
+                                    con.ShowDialog();
+                                    this.Close();
+                                }
+                                else
+                                { 
+                                    secuencial datos = new secuencial(manejador,permiso,i);
+                                    datos.ShowDialog();
+                                    this.Close();
+                                }
                             }
                         }
                         else
