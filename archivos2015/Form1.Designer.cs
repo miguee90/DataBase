@@ -54,16 +54,16 @@
             this.textNomA = new System.Windows.Forms.TextBox();
             this.labelNombreA = new System.Windows.Forms.Label();
             this.dataGridAtr = new System.Windows.Forms.DataGridView();
+            this.ColumnNameA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnClv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBotonA = new System.Windows.Forms.GroupBox();
             this.buttonDelA = new System.Windows.Forms.Button();
             this.buttonModA = new System.Windows.Forms.Button();
             this.buttonAddA = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.comboBD = new System.Windows.Forms.ComboBox();
-            this.ColumnNameA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnClv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupEntidad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEntidad)).BeginInit();
             this.groupName.SuspendLayout();
@@ -366,6 +366,30 @@
             this.dataGridAtr.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridAtr_CellClick);
             this.dataGridAtr.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridAtr_CellDoubleClick);
             // 
+            // ColumnNameA
+            // 
+            this.ColumnNameA.HeaderText = "Nombre";
+            this.ColumnNameA.Name = "ColumnNameA";
+            this.ColumnNameA.ReadOnly = true;
+            // 
+            // ColumnTipo
+            // 
+            this.ColumnTipo.HeaderText = "Tipo de dato";
+            this.ColumnTipo.Name = "ColumnTipo";
+            this.ColumnTipo.ReadOnly = true;
+            // 
+            // ColumnTam
+            // 
+            this.ColumnTam.HeaderText = "Tamaño";
+            this.ColumnTam.Name = "ColumnTam";
+            this.ColumnTam.ReadOnly = true;
+            // 
+            // ColumnClv
+            // 
+            this.ColumnClv.HeaderText = "Clave";
+            this.ColumnClv.Name = "ColumnClv";
+            this.ColumnClv.ReadOnly = true;
+            // 
             // groupBotonA
             // 
             this.groupBotonA.Controls.Add(this.buttonDelA);
@@ -431,30 +455,6 @@
             this.comboBD.TabIndex = 2;
             this.comboBD.Text = "Bases de datos";
             this.comboBD.SelectedValueChanged += new System.EventHandler(this.comboBD_SelectedValueChanged);
-            // 
-            // ColumnNameA
-            // 
-            this.ColumnNameA.HeaderText = "Nombre";
-            this.ColumnNameA.Name = "ColumnNameA";
-            this.ColumnNameA.ReadOnly = true;
-            // 
-            // ColumnTipo
-            // 
-            this.ColumnTipo.HeaderText = "Tipo de dato";
-            this.ColumnTipo.Name = "ColumnTipo";
-            this.ColumnTipo.ReadOnly = true;
-            // 
-            // ColumnTam
-            // 
-            this.ColumnTam.HeaderText = "Tamaño";
-            this.ColumnTam.Name = "ColumnTam";
-            this.ColumnTam.ReadOnly = true;
-            // 
-            // ColumnClv
-            // 
-            this.ColumnClv.HeaderText = "Clave";
-            this.ColumnClv.Name = "ColumnClv";
-            this.ColumnClv.ReadOnly = true;
             // 
             // Form1
             // 

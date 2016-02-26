@@ -59,11 +59,11 @@ namespace archivos2015
             }
             return false;
         }
+
         /// <summary>
         ///Inserta una entidad 
         /// </summary>
         /// <param name="nombre"></param>
-
         public void escribeEntidad(string nombre)
         {
             Entidad nEntidad = new Entidad(nombre);
@@ -166,12 +166,12 @@ namespace archivos2015
                             j.TClave = 3;
                         }
         }
+
         /// <summary>
         /// obtiene la direccion de la entidad especificada
         /// </summary>
         /// <param name="nombre"></param>
         /// <returns></returns>
-
         public long getDirEnt(string nombre)
         {
             for (int i=0; i < entidades.Count; i++)
@@ -180,35 +180,32 @@ namespace archivos2015
 
             return (long)-1;
         }
+
         /// <summary>
         /// Obtiene su direccion en archivo y lo escribe en el
         /// </summary>
         /// <param name="atr"></param>
         /// <param name="nombreEnt"></param>
-
         public void insertaAtributo(Atributo atr, string nombreEnt)
         {
             //Busca la entidad
              for (int i=0; i < entidades.Count; i++)
                  if (entidades[i].Nombre == nombreEnt)
                  {
-                     //Obtiene direccion de archivo 
-                     //inserta en el archivo
                      //inserta en memoria
                      entidades[i].insertaAtributo(atr);
-                     //ordena atributos en archivo
                      //Cambia el apuntador a atributos de la entidad
                      //En memoria
                      entidades[i].ApuntaAt = entidades[i].Atributos[0].Direccion;
                      //En archivo
                  }
         }
+
         /// <summary>
         /// obtiene los atributos de la entidad dada
         /// </summary>
         /// <param name="entidad"></param>
         /// <returns>Lista de atributos</returns>
-
         public List<Atributo> getAtributos(string entidad)
         {
             for (int i=0; i < entidades.Count; i++)
@@ -217,12 +214,12 @@ namespace archivos2015
 
             return null;
         }
+
         /// <summary>
         /// obtiene el nombre de las entidades con clave primaria
         /// </summary>
         /// <param name="self"></param>
         /// <returns>Lista de cadenas</returns>
-
         public List<string> getNomEnts(string self)
         {
             List<string> nomEnts = new List<string>();
@@ -235,13 +232,13 @@ namespace archivos2015
 
             return nomEnts;
         }
+
         /// <summary>
         /// busca si el atributo esta repetido
         /// </summary>
         /// <param name="entidad"></param>
         /// <param name="nomAtri"></param>
         /// <returns>cierto, si es repetido falso si no hay repetidos</returns>
-
         public bool buscaAtributoRepetido(string entidad,string nomAtri)
         {
             for (int i=0; i < entidades.Count; i++)
@@ -252,12 +249,12 @@ namespace archivos2015
 
             return false;
         }
+
         /// <summary>
         /// busca si la entidad que llega por parametro ya tiene claves primarias
         /// </summary>
         /// <param name="nomEntidad"></param>
         /// <returns>cierto, si encontró al menos una.</returns>
-
         public bool buscaPrimarias(string nomEntidad)
         {
             foreach (Entidad i in entidades)
@@ -334,10 +331,6 @@ namespace archivos2015
         }
 
         /// <summary>
-        /// Crea el diccionario a partir de un archivo existente
-        /// </summary>
-
-        /// <summary>
         /// Busca que en todas las entidades exista clave primaria
         /// </summary>
         /// <returns></returns>
@@ -350,6 +343,7 @@ namespace archivos2015
                 foreach (Atributo j in i.Atributos)
                     if (j.TClave == 1)
                         encontro = true;
+
                 if (encontro == false)
                     return false;
                 else

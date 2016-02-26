@@ -274,12 +274,12 @@ namespace archivos2015
                 }
             }
         }
+
         /// <summary>
         /// boton para agregar nuevo atributo
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void buttonAddA_Click(object sender, EventArgs e)
         {
             groupAtriubuto.Text = dataGridEntidad.SelectedRows[0].Cells[0].Value.ToString();
@@ -406,6 +406,7 @@ namespace archivos2015
             else
                 return 3;
         }
+
         /// <summary>
         /// Llena el datagrid de los atributos
         /// </summary>
@@ -511,16 +512,6 @@ namespace archivos2015
                 radioNinguna.Checked = true;
         }
 
-        /// <summary>
-        /// Cuando la ventana se esta cerrando
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
-
         private void iniciaAbrir()
         {
             groupEntidad.Visible = true;
@@ -573,6 +564,17 @@ namespace archivos2015
                     llenaDataA();
                     inicializaTodo();
                 }
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Diccionario baseActual = manejador.getBDbyName(comboBD.Text);
+
+            if (!baseActual.bucaPrimarias())
+            {
+                MessageBox.Show("Error todas las entidades deben tener una clave primaria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
             }
         }
 

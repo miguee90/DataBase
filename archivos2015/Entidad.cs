@@ -44,7 +44,7 @@ namespace archivos2015
 
         public void insertaAtributo(Atributo atr)
         {
-            atributos.Add(atr);
+            atributos.Insert(0, atr);
         }
 
         private void actualizaPtrs()
@@ -52,6 +52,78 @@ namespace archivos2015
             for (int i = 0; i < atributos.Count; i++)
                 if(i<=(atributos.Count-2))
                     atributos[i].ApuntaAtri = atributos[i + 1].Direccion;
+        }
+
+        /// <summary>
+        /// Modifica datos
+        /// </summary>
+        /// <param name="dats"></param>
+        public void modDatos(List<string> dats,User user,List<string> viejo)
+        {
+            List<string> registro = getRegMod(viejo);
+            int i = 0;
+            int k = 0;
+
+            for(;i<dats.Count;i++)
+            {
+                registro[i] = dats[i];
+                k++;
+            }
+            //Fecha de modificacion
+            registro[k + 2] = DateTime.Today.ToShortDateString();
+            registro[k + 5] = user.Nombre;
+        }
+
+        public void modDatCascada(List<string> dats,User user,Diccionario dic,List<string> regV)
+        {
+            string clavePrim="",claveOldPrim="";
+
+            List<string> registroViejo = getRegMod(regV);
+
+            for (int i = 0; i < atributos.Count; i++)
+                if (atributos[i].TClave == 1)
+                {
+                    clavePrim = dats[i];
+                    claveOldPrim = registroViejo[i];
+                }
+
+            modDatos(dats, user,regV);
+
+            for(int i =0;i<dic.Entidades.Count;i++)
+            {
+                for(int j=0;j<dic.Entidades[i].atributos.Count;j++)
+                {
+                    if(dic.Entidades[i].atributos[j].ApuntaPrim==nombre)
+                    {
+                        for(int k=0;k<dic.Entidades[i].listaRegistros.Count;k++)
+                        {
+                            if(dic.Entidades[i].listaRegistros[k][j]==claveOldPrim)
+                            {
+                                dic.Entidades[i].listaRegistros[k][j] = clavePrim;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private List<string> getRegMod(List<string> dats)
+        {
+            List<string> resnull = new List<string>();
+
+            for(int i=0;i<listaRegistros.Count;i++)
+            { 
+                for(int j=0;j<atributos.Count;j++)
+                {
+                    if(atributos[j].TClave==1)
+                    {
+                        if (dats[j] == listaRegistros[i][j])
+                            return listaRegistros[i];
+                    }
+                }
+            }
+
+            return resnull;
         }
 
         #region Getter y setters

@@ -102,9 +102,45 @@ namespace archivos2015
             else
             {
                 //Llenar el data grid con los registros encontrados
-                
-
+                consultaRegistros(comboClaves.Text, textParams.Text);
             }
+        }
+
+        private void consultaRegistros(string clave,string parametro)
+        {
+            bool esPrim = false;
+            Entidad ent = baseActual.getEntByName(comboTablas.Text);
+            List<List<string>> encontrados = new List<List<string>>();
+
+            if (clave.Contains("Kp"))
+                esPrim = true;
+            else if (clave.Contains("Kf"))
+                esPrim = false;
+
+            if (esPrim)
+            {
+                for (int i = 0; i < ent.ListaRegistros.Count; i++)
+                    for (int j = 0; j < ent.Atributos.Count; j++)
+                        if (ent.Atributos[j].TClave == 1 && ent.ListaRegistros[i][j] == parametro)
+                            encontrados.Add(ent.ListaRegistros[i]);
+            }
+            else
+            {
+                for (int k = 0; k < ent.ListaRegistros.Count; k++)
+                    for (int l = 0; l < ent.Atributos.Count; l++)
+                        if (ent.Atributos[l].TClave == 2 && ent.ListaRegistros[k][l] == parametro)
+                            encontrados.Add(ent.ListaRegistros[k]);
+            }
+
+            //LLena el datagrid con los encontrados
+            llenaDataConsulta(encontrados);
+        }
+
+        private void llenaDataConsulta(List<List<string>> encontrados)
+        {
+            dataGridData.Rows.Clear();
+            foreach (List<string> i in encontrados)
+                dataGridData.Rows.Add(i.ToArray());
         }
     }
 }

@@ -53,18 +53,18 @@ namespace archivos2015
             }
         }
 
-        public GetDatos(Atributo atri, Organizacion org,string dato,bool mod)
+        public GetDatos(Atributo atri,string dato,bool mod,Diccionario baseAc,Entidad ent)
         {
             InitializeComponent();
             atributo = atri;
-            diccionario = org.Dic;
-            organizacion = org;
+            diccionario = baseAc;
             noSecu = false;
             viejo = dato;
             modificando = mod;
             groupCaptura.Text = atributo.Nombre + "(" + atributo.Tipo + ")";
             textCaptura.Text = dato;
             cambioPrim = false;
+            entidad = ent;
             if (atributo.TClave == 2)
             {
                 textCaptura.Visible = false;

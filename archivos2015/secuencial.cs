@@ -99,12 +99,14 @@ namespace archivos2015
                 organizacion.abreDesdeArchivo(this.Text);
             }
         }
+
         //Carga las entidades en el combo
         private void loadComboEnts()
         {
             foreach (Entidad i in organizacion.Dic.Entidades)
                 comboBox1.Items.Add(i.Nombre);
         }
+
         //Carga los datos cada vez que se selecciona la entidad
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -131,12 +133,14 @@ namespace archivos2015
 
             llenaData(ent);
         }
+
         //Boton agrega bloque de datos
         private void buttonAddD_Click(object sender, EventArgs e)
         {
             Entidad ent = baseActual.getEntByName(comboBox1.Text);
             bool noInserta = false;
             dats = new List<string>();
+            List<string> auxDats = new List<string>();
             DelD = false;
             modD = false;
             labelAvisos.Text = "";
@@ -144,7 +148,7 @@ namespace archivos2015
             //Llena bitacora
             llenaBitacora(dats, DateTime.Today.ToShortDateString(), "", "", usuario.Nombre, "", "");
 
-            for (int i=6;i<ent.Atributos.Count; i++)
+            for (int i=0;i<ent.Atributos.Count-6; i++)
             {
                 GetDatos box = new GetDatos(ent.Atributos[i], baseActual,ent);
                 if (box.Dato == "error")
@@ -154,11 +158,13 @@ namespace archivos2015
                 }
 
                 box.ShowDialog();
-                dats.Add(box.Dato);
+                auxDats.Add(box.Dato);
             }
 
             if (!noInserta)
             {
+                for(int i =auxDats.Count-1;i>=0;i--)
+                    dats.Insert(0, auxDats[i]);
                 //Inserta el bloque y los datos del registro
                 ent.ListaRegistros.Add(dats);
 
@@ -196,6 +202,7 @@ namespace archivos2015
             labelAvisos.Text = "Da doble click en el registro que deseas eliminar";
             DelD = true;
         }
+
         //Evento del doble click en el datagrid
         private void dataGridData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -213,7 +220,7 @@ namespace archivos2015
             }
             else if (modD == true)
             {
-                Entidad ent = diccionario.getEntByName(comboBox1.Text);
+                Entidad ent = baseActual.getEntByName(comboBox1.Text);
                 bool noInserta = false;
                 bool cambia = false;
                 dats = new List<string>();
@@ -223,14 +230,14 @@ namespace archivos2015
                 if (MessageBox.Show("¿Estas seguro que quieres modificar el bloque?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk) == DialogResult.OK)
                 {
                     //Recorre las columnas del datagrid para obtener los datos
-                    for (int i = 0; i < dataGridData.Columns.Count; i++)
+                    for (int i = 0; i < dataGridData.Columns.Count-6; i++)
                     {
                         dataList.Add(dataGridData.SelectedRows[0].Cells[i].Value.ToString());
                     }
  
-                    foreach (Atributo i in ent.Atributos)
+                    for(int i=0; i< ent.Atributos.Count-6;i++)
                     {
-                        GetDatos box = new GetDatos(i, organizacion,dataList[k+2],modD);
+                        GetDatos box = new GetDatos(ent.Atributos[i],dataList[k],modD,baseActual,ent);
                         if (box.Dato == "error")
                         {
                             noInserta = true;
@@ -245,16 +252,13 @@ namespace archivos2015
                     }
                     if (!cambia)
                     {
-                        //Escribe solo los bloques menos la clave primaria
-                        organizacion.modificaBloque(Convert.ToInt64(dataGridData.SelectedRows[0].Cells[0].Value), ent, dats);
+                        ent.modDatos(dats,usuario,dataList);
                         llenaData(ent);
                     }
                     else if (!noInserta)
                     {
-                        //Elimina un registro de datos
-                        organizacion.eliminaDato(comboBox1.Text, Convert.ToInt64(dataGridData.SelectedRows[0].Cells[0].Value));
-                        //Inserta el bloque y los datos del registro
-                        organizacion.insertaBloqueDatos(ent, dats);
+                        //Mofica en cascada
+                        ent.modDatCascada(dats, usuario, baseActual,dataList);
                         //Llena datagrid
                         llenaData(ent);
                     }
