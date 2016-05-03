@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(secuencial));
             this.groupBoxTodo = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.labelAvisos = new System.Windows.Forms.Label();
             this.groupBotones = new System.Windows.Forms.GroupBox();
             this.buttonDelD = new System.Windows.Forms.Button();
@@ -42,18 +44,20 @@
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.groupTipoE = new System.Windows.Forms.GroupBox();
+            this.comboTipoE = new System.Windows.Forms.ComboBox();
             this.groupBoxTodo.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridData)).BeginInit();
             this.groupBoxCombo1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupTipoE.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxTodo
             // 
+            this.groupBoxTodo.Controls.Add(this.groupTipoE);
             this.groupBoxTodo.Controls.Add(this.groupBox1);
             this.groupBoxTodo.Controls.Add(this.labelAvisos);
             this.groupBoxTodo.Controls.Add(this.groupBotones);
@@ -64,6 +68,25 @@
             this.groupBoxTodo.Size = new System.Drawing.Size(900, 568);
             this.groupBoxTodo.TabIndex = 0;
             this.groupBoxTodo.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Location = new System.Drawing.Point(24, 67);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(187, 62);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Selecciona la base de datos";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(10, 28);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(161, 21);
+            this.comboBox2.TabIndex = 0;
+            this.comboBox2.SelectedValueChanged += new System.EventHandler(this.comboBox2_SelectedValueChanged);
             // 
             // labelAvisos
             // 
@@ -185,24 +208,27 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Secuencial(.sec)|*.sec";
             // 
-            // groupBox1
+            // groupTipoE
             // 
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Location = new System.Drawing.Point(24, 67);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(187, 62);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selecciona la base de datos";
+            this.groupTipoE.Controls.Add(this.comboTipoE);
+            this.groupTipoE.Location = new System.Drawing.Point(521, 145);
+            this.groupTipoE.Name = "groupTipoE";
+            this.groupTipoE.Size = new System.Drawing.Size(275, 49);
+            this.groupTipoE.TabIndex = 4;
+            this.groupTipoE.TabStop = false;
+            this.groupTipoE.Text = "Selecciona el tipo de eliminación";
+            this.groupTipoE.Visible = false;
             // 
-            // comboBox2
+            // comboTipoE
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(10, 28);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(161, 21);
-            this.comboBox2.TabIndex = 0;
-            this.comboBox2.SelectedValueChanged += new System.EventHandler(this.comboBox2_SelectedValueChanged);
+            this.comboTipoE.FormattingEnabled = true;
+            this.comboTipoE.Items.AddRange(new object[] {
+            "Fisica",
+            "Lógica"});
+            this.comboTipoE.Location = new System.Drawing.Point(11, 17);
+            this.comboTipoE.Name = "comboTipoE";
+            this.comboTipoE.Size = new System.Drawing.Size(243, 21);
+            this.comboTipoE.TabIndex = 0;
             // 
             // secuencial
             // 
@@ -217,14 +243,16 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Secuencial";
+            this.Load += new System.EventHandler(this.secuencial_Load);
             this.groupBoxTodo.ResumeLayout(false);
             this.groupBoxTodo.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.groupBotones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridData)).EndInit();
             this.groupBoxCombo1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.groupTipoE.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,5 +275,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.GroupBox groupTipoE;
+        private System.Windows.Forms.ComboBox comboTipoE;
     }
 }

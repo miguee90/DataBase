@@ -18,11 +18,11 @@ namespace archivos2015
 
         }
 
-        public static bool validaEnteros(TextBox text)
+        public static bool validaEnteros(string text)
         {
             try
             {
-                int d=Convert.ToInt32(text.Text);
+                int d=Convert.ToInt32(text);
                 return true;
             }
             catch
@@ -31,11 +31,11 @@ namespace archivos2015
             }
         }
 
-        public static bool validaFlotantes(TextBox text)
+        public static bool validaFlotantes(string text)
         {
             try
             {
-                double d = Convert.ToDouble(text.Text);
+                double d = Convert.ToDouble(text);
                 return true;
             }
             catch
@@ -44,11 +44,11 @@ namespace archivos2015
             }
         }
 
-        public static bool validaChar(TextBox text)
+        public static bool validaChar(string text)
         {
             try
             {
-                double d = Convert.ToChar(text.Text);
+                double d = Convert.ToChar(text);
                 return true;
             }
             catch

@@ -12,14 +12,16 @@ namespace archivos2015
 {
     public partial class GetDatos : Form
     {
-        private string dato;
+        private List<string> dato;
         private Atributo atributo;
+        private List<Atributo> atributos;
         private Diccionario diccionario;
         private Organizacion organizacion;
         private Entidad entidad;
         private Archivo archivo;
         bool noSecu;
         string viejo;
+        List<string> viejos;
         bool cambioPrim;
         bool modificando;
 
@@ -28,59 +30,103 @@ namespace archivos2015
             get { return cambioPrim; }
         }
 
-        public GetDatos(Atributo atri,Diccionario dic,Entidad ent)
+        /// <summary>
+        /// Constructor para inserciones
+        /// </summary>
+        /// <param name="atri"></param>
+        /// <param name="dic"></param>
+        /// <param name="ent"></param>
+        public GetDatos(List<Atributo> atri, Diccionario dic, Entidad ent)
         {
             InitializeComponent();
-            atributo = atri;
+            atributos = atri;
             diccionario = dic;
             entidad = ent;
             noSecu = false;
             viejo = "";
             modificando = false;
             cambioPrim = false;
-            groupCaptura.Text = atributo.Nombre+"("+atributo.Tipo+")";
-            if (atributo.TClave == 2)
-            {
-                textCaptura.Visible = false;
-                comboExternas.Visible = true;
-                //Llena el combo con los datos de clave primaria
-                if (!llenaCombo(atributo.ApuntaPrim,diccionario))
-                {
-                    MessageBox.Show("Error aun no existen datos para llenar la clave externa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dato = "error";
-                    this.Close();
-                }
-            }
-        }
+            dato = new List<string>();
 
-        public GetDatos(Atributo atri,string dato,bool mod,Diccionario baseAc,Entidad ent)
-        {
-            InitializeComponent();
-            atributo = atri;
-            diccionario = baseAc;
-            noSecu = false;
-            viejo = dato;
-            modificando = mod;
-            groupCaptura.Text = atributo.Nombre + "(" + atributo.Tipo + ")";
-            textCaptura.Text = dato;
-            cambioPrim = false;
-            entidad = ent;
-            if (atributo.TClave == 2)
-            {
-                textCaptura.Visible = false;
-                comboExternas.Visible = true;
-                //Llena el combo con los datos de clave primaria
-                if (!llenaCombo(atributo.ApuntaPrim, diccionario))
+            dataGridView1.ColumnCount = ent.Atributos.Count-6;
+            for(int i=0; i<ent.Atributos.Count-6;i++)
+            { 
+                if(ent.Atributos[i].TClave==2)
                 {
-                    MessageBox.Show("Error aun no existen datos para llenar la clave externa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    dato = "error";
-                    this.Close();
+                    DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+                    List<String> itemCodeList = llenaCombo(ent.Atributos[i].ApuntaPrim, diccionario);
+                    if(itemCodeList.Count==0)
+                    {
+                        MessageBox.Show("Error aun no existen datos para llenar la clave externa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dato.Add("error");
+                        this.Close();
+                    }
+                    combo.DataSource = itemCodeList;
+                    combo.HeaderText = ent.Atributos[i].Nombre + "(" + ent.Atributos[i].Tipo + ")";
+                    combo.Name = ent.Atributos[i].Nombre + "(" + ent.Atributos[i].Tipo + ")";
+                    combo.Width = 100;
+                    dataGridView1.Columns.Insert(0, combo);
+                    dataGridView1.ColumnCount--;
+                }
+                else
+                {
+                    dataGridView1.Columns[i].Name = ent.Atributos[i].Nombre + "(" + ent.Atributos[i].Tipo + ")";
                 }
             }
         }
 
         /// <summary>
-        /// Constructor para modificaciones
+        /// Sobrecarga de constructor para modificaciones
+        /// </summary>
+        /// <param name="atri"></param>
+        /// <param name="dato"></param>
+        /// <param name="mod"></param>
+        /// <param name="baseAc"></param>
+        /// <param name="ent"></param>
+        public GetDatos(List<Atributo> atri,List<string> dat,bool mod,Diccionario baseAc,Entidad ent)
+        {
+            InitializeComponent();
+            atributos = atri;
+            diccionario = baseAc;
+            noSecu = false;
+            viejos = dat;
+            modificando = mod;
+            dato = new List<string>();
+            cambioPrim = false;
+            entidad = ent;
+
+            dataGridView1.ColumnCount = ent.Atributos.Count - 6;
+
+            for (int i = 0; i < ent.Atributos.Count - 6; i++)
+            {
+                if (ent.Atributos[i].TClave == 2)
+                {
+                    DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+                    List<String> itemCodeList = llenaCombo(ent.Atributos[i].ApuntaPrim, diccionario);
+                    if (itemCodeList.Count == 0)
+                    {
+                        MessageBox.Show("Error aun no existen datos para llenar la clave externa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        dato.Add("error");
+                        this.Close();
+                    }
+                    combo.DataSource = itemCodeList;
+                    combo.HeaderText = ent.Atributos[i].Nombre + "(" + ent.Atributos[i].Tipo + ")";
+                    combo.Name = ent.Atributos[i].Nombre + "(" + ent.Atributos[i].Tipo + ")";
+                    combo.Width = 100;
+                    dataGridView1.Columns.Insert(0, combo);
+                    dataGridView1.ColumnCount--;
+                }
+                else
+                {
+                    dataGridView1.Columns[i].Name = ent.Atributos[i].Nombre + "(" + ent.Atributos[i].Tipo + ")";
+                    dataGridView1.Rows[0].Cells[i].Value = viejos[i];
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Constructor para ?
         /// </summary>
         /// <param name="atri"></param>
         /// <param name="dicc"></param>
@@ -98,6 +144,7 @@ namespace archivos2015
             cambioPrim = false;
             viejo = dato;
             modificando = mod;
+            /*
             textCaptura.Text = dato;
             groupCaptura.Text = atributo.Nombre + "(" + atributo.Tipo + ")";
             if (atributo.TClave == 2)
@@ -110,17 +157,116 @@ namespace archivos2015
                     MessageBox.Show("Error aun no existen datos para llenar la clave externa", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     dato = "error";
                     this.Close();
-                }*/
-            }
+                }
+            }*/
         }
 
-        public string Dato
+        public List<string> Dato
         {
             get { return dato; }
         }
 
+        /// <summary>
+        /// Boton que almacena los datos insertados o modificados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
+            dato = new List<string>();
+            bool killoop = false;
+
+            for(int i=0;i<entidad.Atributos.Count-6;i++)
+            {
+                if(modificando)
+                    if (entidad.Atributos[i].TClave == 1 && (viejos[i] != dataGridView1.Rows[0].Cells[i].Value.ToString()))
+                        cambioPrim = true;
+                switch (entidad.Atributos[i].Tipo)
+                {
+                    case "int":
+                        if (entidad.Atributos[i].TClave == 1 && buscaClavePrimRepetida(dataGridView1.Rows[0].Cells[i].Value.ToString()) &&  modificando == false || (entidad.Atributos[i].TClave == 1&&buscaClavePrimRepetida(dataGridView1.Rows[0].Cells[i].Value.ToString()) && cambioPrim))
+                        { 
+                            MessageBox.Show("Error clave primaria repetida", "Repetida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            killoop = true;
+                        }
+                        else
+                        {
+                            if (entidad.Atributos[i].TClave == 2)
+                                dato.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                            else if (Validaciones.validaEnteros(dataGridView1.Rows[0].Cells[i].Value.ToString()))
+                                dato.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                            else
+                            {
+                                MessageBox.Show("El tipo de datos debe ser entero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                killoop = true;
+                            }
+                        }
+                        break;
+                    case "float":
+                        if (buscaClavePrimRepetida(dataGridView1.Rows[0].Cells[i].Value.ToString()) && entidad.Atributos[i].TClave == 1 && modificando == false || (entidad.Atributos[i].TClave == 1 && buscaClavePrimRepetida(dataGridView1.Rows[0].Cells[i].Value.ToString()) && cambioPrim))
+                        { 
+                            MessageBox.Show("Error clave primaria repetida", "Repetida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            killoop = true;
+                        }
+                        else
+                        {
+                            if (entidad.Atributos[i].TClave == 2)
+                                dato.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                            else if (Validaciones.validaFlotantes(dataGridView1.Rows[0].Cells[i].Value.ToString()))
+                                dato.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                            else
+                                MessageBox.Show("El tipo de datos debe ser flotante", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            killoop = true;
+                        }
+                        break;
+                    case "char":
+                        if (buscaClavePrimRepetida(dataGridView1.Rows[0].Cells[i].Value.ToString()) && entidad.Atributos[i].TClave == 1 && modificando == false || (entidad.Atributos[i].TClave == 1 && buscaClavePrimRepetida(dataGridView1.Rows[0].Cells[i].Value.ToString()) && cambioPrim))
+                        { 
+                            killoop = true;
+                            MessageBox.Show("Error clave primaria repetida", "Repetida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            if (entidad.Atributos[i].TClave == 2)
+                                dato.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                            else if (Validaciones.validaChar(dataGridView1.Rows[0].Cells[i].Value.ToString()))
+                                dato.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                            else
+                            {
+                                MessageBox.Show("El tipo de dato debe ser caracter", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                killoop = true;
+                            }
+                        }
+                        break;
+                    case "string":
+                        if (buscaClavePrimRepetida(dataGridView1.Rows[0].Cells[i].Value.ToString()) && entidad.Atributos[i].TClave == 1 && modificando == false || (entidad.Atributos[i].TClave == 1 && buscaClavePrimRepetida(dataGridView1.Rows[0].Cells[i].Value.ToString()) && cambioPrim))
+                        { 
+                            MessageBox.Show("Error clave primaria repetida", "Repetida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            killoop = true;
+                        }
+                        else
+                        {
+                            if (entidad.Atributos[i].TClave == 2)
+                                dato.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                            else if (entidad.Atributos[i].Tam > dataGridView1.Rows[0].Cells[i].Value.ToString().Length)
+                                dato.Add(dataGridView1.Rows[0].Cells[i].Value.ToString());
+                            else
+                            {
+                                MessageBox.Show("El tamaño de la cadena excede el tamaño", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                killoop = true;
+                            }
+                        }
+                        break;
+                }
+
+                if (killoop)
+                    break;
+            }
+            
+            if(!killoop)
+                this.Close();
+
+            /*
             if (noSecu)
             {
                 if (atributo.TClave == 1)
@@ -302,9 +448,10 @@ namespace archivos2015
                         break;
                 }
             }
+            */
         }
 
-        private bool llenaCombo(string dirEnt,Diccionario dicc)
+        private List<string> llenaCombo(string dirEnt,Diccionario dicc)
         {
             List<string> listaDatos = new List<string>();
 
@@ -314,21 +461,15 @@ namespace archivos2015
                 for(int j=0;j<ent.Atributos.Count;j++)
                     if(ent.Atributos[j].TClave==1)
                         listaDatos.Add(i[j]);
-            if (listaDatos.Count > 0)
-            {
-                foreach (string i in listaDatos)
-                    comboExternas.Items.Add(i);
 
-                return true;
-            }
-            else
-                return false;
+            return listaDatos;
+            
         }
 
         private bool llenaComboIndexada(long dirEnt)
         {
             List<string> listaDatos = new List<string>();
-
+            /*
             //Obtener la entidad a la que apunta la direccion
             Entidad ent = diccionario.getEnteByDir(dirEnt);
             //Obtener los datos que que esten en esa entidad
@@ -344,7 +485,7 @@ namespace archivos2015
                     comboExternas.Items.Add(i);
                 }
             }
-
+            */
             return true;
         }
 
@@ -360,18 +501,6 @@ namespace archivos2015
                             repetido = true;
 
             return repetido;
-        }
-
-        private string getTextActive()
-        {
-            string res="";
-
-            if (comboExternas.Visible == true)
-                res = comboExternas.Text;
-            else if (textCaptura.Visible == true)
-                res = textCaptura.Text;
-
-            return res;
         }
 
         private List<string> getDatosPrimariosIndex(Entidad ent)
@@ -428,8 +557,13 @@ namespace archivos2015
                     }
                 }
             }
-
             return auxList;
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            dato.Add("error");
+            this.Close();
         }
     }
 }

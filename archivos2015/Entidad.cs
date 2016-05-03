@@ -86,9 +86,10 @@ namespace archivos2015
                     clavePrim = dats[i];
                     claveOldPrim = registroViejo[i];
                 }
-
+            //Modifica la bitacora
             modDatos(dats, user,regV);
 
+            //Algoritmo para buscar y modificar en casacada
             for(int i =0;i<dic.Entidades.Count;i++)
             {
                 for(int j=0;j<dic.Entidades[i].atributos.Count;j++)
@@ -124,6 +125,77 @@ namespace archivos2015
             }
 
             return resnull;
+        }
+
+        public void eliminaReg(List<string> regViejo, Diccionario baseDatos)
+        {
+
+            eliminaCascada(baseDatos, nombre, regViejo);
+
+            for (int i = 0; i < listaRegistros.Count; i++)
+                for (int j = 0; j < atributos.Count-6; j++)
+                    if (atributos[j].TClave == 1)
+                        if (regViejo[j] == listaRegistros[i][j])
+                            listaRegistros.RemoveAt(i);
+        }
+
+        public void eliminaRegLog(List<string> regViejo, Diccionario baseDatos,User user)
+        {
+
+            eliminaCascadaLog(baseDatos, nombre, regViejo,user);
+
+            for (int i = 0; i < listaRegistros.Count; i++)
+                for (int j = 0; j < atributos.Count - 6; j++)
+                    if (atributos[j].TClave == 1)
+                        if (regViejo[j] == listaRegistros[i][j])
+                        {
+                            listaRegistros[i][listaRegistros[i].Count - 5] = DateTime.Today.ToShortDateString();
+                            listaRegistros[i][listaRegistros[i].Count - 2] = user.Nombre;
+                        }
+        }
+
+        private void eliminaCascada(Diccionario baseDatos,string entidad,List<string> datos)
+        {
+            List<string> aux = new List<string>();
+            Entidad enti = baseDatos.getEntByName(entidad);
+
+            foreach (Entidad i in baseDatos.Entidades)
+                if (i.nombre != entidad)
+                    for (int j = 0; j < i.Atributos.Count-6; j++)
+                        if (i.atributos[j].ApuntaPrim == entidad)
+                            for(int l=0;l<enti.atributos.Count;l++)
+                                if(enti.atributos[l].TClave==1)
+                                    for (int k=0;k<enti.ListaRegistros.Count;k++)
+                                        if (datos[l] == i.listaRegistros[k][j])
+                                        {
+                                            aux = i.listaRegistros[k];
+                                            i.ListaRegistros.Remove(i.listaRegistros[k]);
+                                            eliminaCascada(baseDatos, i.nombre, aux);
+                                            return;
+                                        }
+
+        }
+
+        private void eliminaCascadaLog(Diccionario baseDatos, string entidad, List<string> datos,User user)
+        {
+            List<string> aux = new List<string>();
+            Entidad enti = baseDatos.getEntByName(entidad);
+
+            foreach (Entidad i in baseDatos.Entidades)
+                if (i.nombre != entidad)
+                    for (int j = 0; j < i.Atributos.Count - 6; j++)
+                        if (i.atributos[j].ApuntaPrim == entidad)
+                            for (int l = 0; l < enti.atributos.Count; l++)
+                                if (enti.atributos[l].TClave == 1)
+                                    for (int k = 0; k < enti.ListaRegistros.Count; k++)
+                                        if (datos[l] == i.listaRegistros[k][j])
+                                        {
+                                            i.ListaRegistros[k][i.ListaRegistros[k].Count - 5] = DateTime.Today.ToShortDateString();
+                                            i.ListaRegistros[k][i.ListaRegistros[k].Count - 2] = user.Nombre;
+                                            eliminaCascadaLog(baseDatos, i.nombre, i.ListaRegistros[k], user);
+                                            return;
+                                        }
+
         }
 
         #region Getter y setters

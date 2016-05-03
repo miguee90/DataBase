@@ -148,23 +148,27 @@ namespace archivos2015
             //Llena bitacora
             llenaBitacora(dats, DateTime.Today.ToShortDateString(), "", "", usuario.Nombre, "", "");
 
-            for (int i=0;i<ent.Atributos.Count-6; i++)
-            {
-                GetDatos box = new GetDatos(ent.Atributos[i], baseActual,ent);
-                if (box.Dato == "error")
+            //Aparece el dialogo para la captura de datos
+            GetDatos box = new GetDatos(ent.Atributos, baseActual,ent);
+            foreach(string s in box.Dato)
+            { 
+                if (s == "error")
                 {
                     noInserta = true;
-                    break;
                 }
-
-                box.ShowDialog();
-                auxDats.Add(box.Dato);
             }
-
+            box.ShowDialog();
+            foreach (string s in box.Dato)
+            {
+                if (s == "error")
+                {
+                    noInserta = true;
+                }
+            }
             if (!noInserta)
             {
-                for(int i =auxDats.Count-1;i>=0;i--)
-                    dats.Insert(0, auxDats[i]);
+                for(int i =box.Dato.Count-1;i>=0;i--)
+                    dats.Insert(0, box.Dato[i]);
                 //Inserta el bloque y los datos del registro
                 ent.ListaRegistros.Add(dats);
 
@@ -201,6 +205,7 @@ namespace archivos2015
         {
             labelAvisos.Text = "Da doble click en el registro que deseas eliminar";
             DelD = true;
+            groupTipoE.Visible = true;
         }
 
         //Evento del doble click en el datagrid
@@ -208,13 +213,23 @@ namespace archivos2015
         {
             if (DelD == true)
             {
-                if (MessageBox.Show("¿Estas seguro que quieres eliminar el bloque?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk) == DialogResult.OK)
+                if (comboTipoE.Text == "")
+                    MessageBox.Show("Selecciona el tipo de eliminación que quieres.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                else if (MessageBox.Show("¿Estas seguro que quieres eliminar el bloque?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk) == DialogResult.OK)
                 {
-                    long dir = Convert.ToInt64(dataGridData.SelectedRows[0].Cells[0].Value);
-                    Entidad ent = diccionario.getEntByName(comboBox1.Text);
+                    List<string> rViejo = new List<string>();
+                    Entidad ent = baseActual.getEntByName(comboBox1.Text);
+                    
+                    foreach(DataGridViewCell cell in dataGridData.SelectedRows[0].Cells)
+                        rViejo.Add(cell.Value.ToString());
+
+                    if(comboTipoE.Text=="Fisica")
+                        ent.eliminaReg(rViejo,baseActual);
+                    else if(comboTipoE.Text=="Lógica")
+                        ent.eliminaRegLog(rViejo, baseActual, usuario);
 
                     //Elimina un registro de datos
-                    organizacion.eliminaDato(comboBox1.Text, Convert.ToInt64(dataGridData.SelectedRows[0].Cells[0].Value));
                     llenaData(ent);
                 }
             }
@@ -231,25 +246,30 @@ namespace archivos2015
                 {
                     //Recorre las columnas del datagrid para obtener los datos
                     for (int i = 0; i < dataGridData.Columns.Count-6; i++)
-                    {
                         dataList.Add(dataGridData.SelectedRows[0].Cells[i].Value.ToString());
-                    }
  
-                    for(int i=0; i< ent.Atributos.Count-6;i++)
+                    GetDatos boxe = new GetDatos(ent.Atributos,dataList,modD,baseActual,ent);
+
+                    foreach (string s in boxe.Dato)
                     {
-                        GetDatos box = new GetDatos(ent.Atributos[i],dataList[k],modD,baseActual,ent);
-                        if (box.Dato == "error")
+                        if (s == "error")
                         {
                             noInserta = true;
-                            break;
                         }
-                        box.ShowDialog();
-                        if (box.CambioPrim == true)
-                            cambia = true;
-                        
-                        dats.Add(box.Dato);
-                        k += 1;
                     }
+                    boxe.ShowDialog();
+                    foreach (string s in boxe.Dato)
+                    {
+                        if (s == "error")
+                        {
+                            noInserta = true;
+                        }
+                        else if (boxe.CambioPrim == true)
+                            cambia = true;
+                    }
+                    for (int i = boxe.Dato.Count - 1; i >= 0; i--)
+                        dats.Insert(0, boxe.Dato[i]);
+
                     if (!cambia)
                     {
                         ent.modDatos(dats,usuario,dataList);
@@ -273,6 +293,11 @@ namespace archivos2015
             {
                 comboBox1.Items.Add(i.Nombre);
             }
+        }
+
+        private void secuencial_Load(object sender, EventArgs e)
+        {
+
         }
 
         //Boton que activa la modificacion del bloque

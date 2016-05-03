@@ -214,24 +214,6 @@ namespace archivos2015
                         }
                     }
 
-                    //Inserta
-                    foreach (Atributo i in ent2.Atributos)
-                    {
-                        GetDatos box = new GetDatos(i, diccionario, indexada.Archivo,dataList[k+2],modD);
-                        if (box.Dato == "error")
-                        {
-                            noInserta = true;
-                            break;
-                        }
-
-                        box.ShowDialog();
-                        if (box.CambioPrim == true)
-                            cambia = true;
-
-                        dats.Add(box.Dato);
-                        k += 1;
-                    }
-
                     if (!cambia)
                     {
                         //Modifiica los datos menos la clave primaria
